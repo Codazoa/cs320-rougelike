@@ -1,6 +1,6 @@
-Dylan [fill in last name]'s Enemy Design Prototype
+Dylan Strong's Enemy Design Prototype
 
 Has the following functions currently:
-
+    First Game Demo: First Demo Project testing Godot Skills and Abilities
 
 Needs implementation/correction:
