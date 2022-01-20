@@ -1,4 +1,4 @@
-Cody [fill in last name]'s Data Scraping Prototype
+Cody Vernon's Data Scraping Prototype
 
 Has the following functions currently:
 
