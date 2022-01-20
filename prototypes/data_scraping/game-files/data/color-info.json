@@ -1,0 +1,47 @@
+{
+  "item1": {
+    "red": 137,
+    "green": 23,
+    "blue": 252
+  },
+  "item2": {
+    "red": 25,
+    "green": 166,
+    "blue": 231
+  },
+  "item3": {
+    "red": 162,
+    "green": 200,
+    "blue": 174
+  },
+  "item4": {
+    "red": 103,
+    "green": 16,
+    "blue": 237
+  },
+  "item5": {
+    "red": 209,
+    "green": 227,
+    "blue": 194
+  },
+  "item6": {
+    "red": 8,
+    "green": 145,
+    "blue": 241
+  },
+  "item7": {
+    "red": 63,
+    "green": 39,
+    "blue": 24
+  },
+  "item8": {
+    "red": 57,
+    "green": 62,
+    "blue": 227
+  },
+  "item9": {
+    "red": 168,
+    "green": 195,
+    "blue": 166
+  }
+}
