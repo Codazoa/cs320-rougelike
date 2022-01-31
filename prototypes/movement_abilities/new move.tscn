@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Slug/Slug/pl_head_w.png" type="Texture" id=1]
+[ext_resource path="res://Head.gd" type="Script" id=2]
+[ext_resource path="res://Slug/Slug/pl_body_w.png" type="Texture" id=3]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=4]
+[ext_resource path="res://body.gd" type="Script" id=5]
+[ext_resource path="res://Slug/Slug/pl_tail1_w.png" type="Texture" id=6]
+[ext_resource path="res://tail1.gd" type="Script" id=7]
+[ext_resource path="res://Slug/Slug/pl_tail2_w.png" type="Texture" id=8]
+[ext_resource path="res://tail2.gd" type="Script" id=9]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tail2" type="KinematicBody2D" parent="."]
+position = Vector2( 47, 36 )
+rotation = 1.5708
+z_index = 1
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="tail2"]
+rotation = 1.5708
+z_index = 2
+texture = ExtResource( 8 )
+
+[node name="tail1" type="KinematicBody2D" parent="."]
+position = Vector2( 47, 60 )
+rotation = -3.14159
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="tail1"]
+position = Vector2( 11, 0 )
+rotation = 1.5708
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="body" type="KinematicBody2D" parent="."]
+position = Vector2( 48, 77 )
+rotation = 1.5708
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="body"]
+position = Vector2( 18, 0 )
+rotation = 1.5708
+texture = ExtResource( 3 )
+
+[node name="PlayerPos" type="KinematicBody2D" parent="."]
+position = Vector2( 50, 117 )
+script = ExtResource( 4 )
+
+[node name="Head" type="KinematicBody2D" parent="PlayerPos"]
+z_index = -1
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="PlayerPos/Head"]
+rotation = 1.5708
+z_index = 4
+texture = ExtResource( 1 )
