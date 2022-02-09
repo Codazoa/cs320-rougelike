@@ -1,6 +1,9 @@
 extends Node
 
 export (PackedScene) var wall;
+export (PackedScene) var generalRoom;
+export (PackedScene) var spawnRoom;
+export (PackedScene) var bossRoom;
 
 var floorPlan = []; #Stores floor plan
 var floorPlanWidth; #Handles width of floor plan
@@ -92,6 +95,10 @@ func findFirstDesiredBorderID(givenX, givenY, desiredBorderID):
 	coordinates.append(-1);
 	return coordinates;
 
+"""
+findDeadendSpot() takes two integers. The first integer denotes what roomID should be checked when checking for a
+deadend. In most cases '0' will be utilized here. The second integer placementID denotes what roomID the deadend should be of.
+"""
 func findDeadendSpot(defaultRoomID, placementID):
 	var legalRoomIDCheck = false;
 	var legalBorderCheck = false;
@@ -195,7 +202,7 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 	#Initialize floorplan array
 	createEmptyFloorPlan(floorPlanWidth, floorPlanHeight);
 	
-	#Place room
+	#Place initial room, which begins process of "growing" dungeon
 	placeRoom( roomMarkerWidth, roomMarkerHeight, 0);
 
 	#Ensure enough rooms are placed
@@ -205,10 +212,30 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 		placeRoom( selectedRoom[0], selectedRoom[1], 0);
 	
 	#Place special rooms
-	pass;
+		#Place spawn room
+	var roomResults = findDeadendSpot(0, 1);
+	floorPlan[roomResults[0]][roomResults[1]] = 2;
+		
+		#Place boss room
+	roomResults = findDeadendSpot(0, 1);
+	floorPlan[roomResults[0]][roomResults[1]] = 3;
 
 """
-DEBUG FUNCTION: Places tiles in accordance to floor plan
+DEBUG FUNCTION: Places tile according to room for help in building floor plan
+"""
+func placeObject(event, givenInstance, i, j):
+	#Grab sprite size
+	var instanceSprite = givenInstance.get_node("StaticBody2D").get_node("SpriteTest");
+	var spriteWidth = instanceSprite.texture.get_width()*instanceSprite.scale.x;
+	var spriteHeight = instanceSprite.texture.get_height()*instanceSprite.scale.y;
+		
+	#Modify position
+	givenInstance.position.x = event.position.x+(i*spriteWidth);
+	givenInstance.position.y = event.position.y+(j*spriteHeight);
+	add_child(givenInstance);
+
+"""
+DEBUG FUNCTION: Places tiles in accordance to floor plan to allow for visualization of map
 """
 func buildFloorPlan(event):
 	var desiredWidth = floorPlan.size();
@@ -217,19 +244,17 @@ func buildFloorPlan(event):
 	#Iterate through array
 	for i in range(0, desiredWidth):
 		for j in range(0, desiredHeight):
-			if(floorPlan[i][j] == 0):
-				#Create instance
-				var new_wall = wall.instance();
-				#Grab sprite size
-				var wallSprite = new_wall.get_node("StaticBody2D").get_node("SpriteTest");
-				var wallWidth = wallSprite.texture.get_width()*wallSprite.scale.x;
-				var wallHeight = wallSprite.texture.get_height()*wallSprite.scale.y;
-				
-				#Modify position
-				new_wall.position.x = event.position.x+(i*wallWidth);
-				new_wall.position.y = event.position.y+(j*wallHeight);
-				add_child(new_wall);
-
+			var new_instance = -1;
+			#Identify what room id is
+			if(floorPlan[i][j] == 1): 
+				placeObject(event, generalRoom.instance(), i, j);
+				pass;
+			elif(floorPlan[i][j] == 2):
+				placeObject(event, spawnRoom.instance(), i, j);
+			elif(floorPlan[i][j] == 3):
+				placeObject(event, bossRoom.instance(), i, j);
+			else:
+				placeObject(event, wall.instance(), i, j);
 """
 DEBUG FUNCTION: detectClick is a basic function that checks for a left click input. It returns a true/false boolean. It
 was intended for me to test out mouse inputs, as well as practicing function formatting in godot.
@@ -245,5 +270,5 @@ DEBUG FUNCTION: _input spawns a wall at the cursor position if the left mouse bu
 """
 func _input(event):
 	if (detectClick(event)):
-		generateFloorPlan(7, 7, 10);
+		generateFloorPlan(15, 15, 30);
 		buildFloorPlan(event);
