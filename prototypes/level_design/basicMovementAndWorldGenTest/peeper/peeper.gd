@@ -3,7 +3,8 @@ extends KinematicBody2D
 """
 In case you're wondering why this is called peeper instead of player, 
 the player sprite I used was taken from a side project/game I've been making.
-Its got a bossfight named "lil'peeper", who is a giant eyeball.
+Its got a bossfight named "lil'peeper", who is a giant eyeball. Hence me deciding
+to name it peeper.
 """
 
 # Declare member variables here. Examples:

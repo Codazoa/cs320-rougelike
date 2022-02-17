@@ -10,16 +10,15 @@ var floorPlanWidth; #Handles width of floor plan
 var floorPlanHeight; #Handles height of floor plan
 var floorPlanRoomCount; #Handles how many desired rooms there will be in floor plan
 var currentRoomCount; #Handles how many rooms have been created in the current floor plan
-
 var rng = RandomNumberGenerator.new();
 
 """
 RoomID:
-0 == no room
-1 == generic room
-2 == spawn room
-3 == exit/boss room
-4 == etc.
+	0 == no room
+	1 == generic room
+	2 == spawn room
+	3 == exit/boss room
+	4 == etc.
 """
 
 """
@@ -96,10 +95,10 @@ func findFirstDesiredBorderID(givenX, givenY, desiredBorderID):
 	return coordinates;
 
 """
-findDeadendSpot() takes two integers. The first integer denotes what roomID should be checked when checking for a
+findDeadendRoom() takes two integers. The first integer denotes what roomID should be checked when checking for a
 deadend. In most cases '0' will be utilized here. The second integer placementID denotes what roomID the deadend should be of.
 """
-func findDeadendSpot(defaultRoomID, placementID):
+func findDeadendRoom(defaultRoomID, placementID):
 	var legalRoomIDCheck = false;
 	var legalBorderCheck = false;
 	var fullLoopCheck = false;
@@ -143,6 +142,39 @@ func findDeadendSpot(defaultRoomID, placementID):
 	chosenCoords.append(chosenY);
 	return chosenCoords;
 
+"""
+findAllDeadendRooms() returns a 2d array of integers, denoting the coordinates of all dead end rooms
+on the current floor plan. These deadend rooms are classified via roomIs(RoomCheck(), alongside receiving
+1 from roomBorderCount().
+"""
+func findAllDeadendRooms():
+	var coordRecord = []; #Will be used to store all coords found
+	#Cycle through entire floorplan
+	for i in range(0, floorPlan.size()):
+		for j in range(0, floorPlan[0].size()):
+			#Check if non-zero room found, along with if room only has 1 bordering room.
+			if( roomIsRoomCheck(i, j) and (roomBorderCount( i, j) == 1) ):
+				var coords = []; #Will be used to find coordinates just found. Then appended ot coordRecord
+				coords.append(i);
+				coords.append(j);
+				coordRecord.append(coords); #If 3 bordering walls, record location
+	#Return array
+	return coordRecord;
+
+"""
+placeRoom() is a recursive function that takes three integers. The first two parameters denote the x and y coordinates
+to attempt to place a room at. The third integer denotes the current 'depth' placeRoom() is at.
+placeRoom() completes the following actions:
+	-Ensure the current rooms generated on the floorplan has not exceeded the desired total rooms
+	-Ensure the currentDepth parameter given does not exceed a defined maximum depth. Depth is defined as the 'distance'
+	away from the original calling location of placeRoom(). This is done to discourage the floorplan generating in a straight line.
+	-Ensure the given coordinates point towards a legitimate location on the floorplan (not out of bounds). Uses roomisLegal()
+	-Using roomIsRoomCheck(), checks to ensure given coordinates do not point towards a pre-exisitng room.
+	-Using roomBorderCount(), ensures current coordinates would not generate a room at a location with too many adjacent rooms
+	-50/50 chance to place room at current location. 50/50 chance is overridded if no roomes are placed yet.
+	-Place room. Increment room count
+	-Then, call placeRoom() on all surrounding room coordinates in a semi-random order.
+"""
 func placeRoom(givenX, givenY, currentDepth):
 	var adjacentLimit = 1;
 	var maxDepth = 2;
@@ -208,17 +240,41 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 	#Ensure enough rooms are placed
 	while(currentRoomCount < floorPlanRoomCount):
 		#Locate random point in room to banch out of
-		var selectedRoom = findDeadendSpot(1, 0); #Use special locate room function
+		var selectedRoom = findDeadendRoom(1, 0); #Use special locate dead end room function
 		placeRoom( selectedRoom[0], selectedRoom[1], 0);
 	
 	#Place special rooms
+	var chosenIndex;
+	var deadendCoords = findAllDeadendRooms();
+
 		#Place spawn room
-	var roomResults = findDeadendSpot(0, 1);
-	floorPlan[roomResults[0]][roomResults[1]] = 2;
-		
+	chosenIndex = rng.randi_range(0, deadendCoords.size()-1); #Choose random index from list of deadends
+	var spawnRoomCoords = deadendCoords[chosenIndex]; #Records coordinates at index for later
+	deadendCoords.remove(chosenIndex); #Remove coordinates from list
+	floorPlan[spawnRoomCoords[0]][spawnRoomCoords[1]] = 2; #Place spawn room
+
 		#Place boss room
-	roomResults = findDeadendSpot(0, 1);
-	floorPlan[roomResults[0]][roomResults[1]] = 3;
+	#Cycle through entire deadendCoords list
+	var bossRoomCoordsIndex = findFurthestDeadEnd(spawnRoomCoords, deadendCoords);
+	floorPlan[deadendCoords[bossRoomCoordsIndex][0]][deadendCoords[bossRoomCoordsIndex][1]] = 3;
+
+"""
+findFurthestDeadEnd() takes two parameters, the first is an integer array that denotes the coordinates of a room 
+on the current floorplan. The second parameter is a 2d integer array which denotes a list of coordinates that point 
+towards deadend rooms on the floor plan. An integer denoting the index of the coordinates furthest from the given 
+coordinats will be returned. The index is returned to allow for future removal of the coordinates from the list if 
+need be.
+"""
+func findFurthestDeadEnd(givenCoordinates, givenDeadendCoords):
+	var anchorVector = Vector2(givenCoordinates[0], givenCoordinates[1]);
+	var furthestCoordsIndex = 0;
+	for i in range(0, givenDeadendCoords.size()-1):
+		#Get distance between current point and 
+		var currentDist = anchorVector.distance_to(Vector2(givenDeadendCoords[i][0], givenDeadendCoords[i][1]));
+		var furthestDist = anchorVector.distance_to(Vector2(givenDeadendCoords[furthestCoordsIndex][0], givenDeadendCoords[furthestCoordsIndex][1]));
+		if(currentDist > furthestDist): 
+			furthestCoordsIndex = i;
+	return furthestCoordsIndex;
 
 """
 DEBUG FUNCTION: Places tile according to room for help in building floor plan
@@ -266,7 +322,7 @@ func detectClick(event):
 		return false;
 
 """
-DEBUG FUNCTION: _input spawns a wall at the cursor position if the left mouse button is clicked
+DEBUG FUNCTION: _input spawns a the floor plan, starting at the cursor position (if the left mouse button is clicked)
 """
 func _input(event):
 	if (detectClick(event)):
