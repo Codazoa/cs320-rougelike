@@ -23,6 +23,52 @@ contract playerMintContract is ERC721, Ownable {
         // Number of variable changes matters WAY more than loops (time wise), unlike other languages.
     }
 
+    // Struct to store the player data
+    struct Player {
+        // State variables
+        int empid;
+        string name;
+        string playDate;
+        string connectedParts;
+    }
+
+    Player []emps;
+
+    // Function to add player details
+    function addPlayer(
+        int empid, string memory name,
+        string memory playDate,
+        string memory connectedParts
+    ) public {
+        Player memory e
+            = Player(empid, name, playDate, connectedParts);
+        emps.push(e);
+    }
+
+    // Function to get player details
+    function getPlayer(int empid) public view returns(
+        string memory,
+        string memory,
+        string memory) 
+        {
+            uint i;
+            for (i=0; i<emps.length; i++) {
+                Player memory e
+                    = emps[i];
+
+                    // Look for a matching player ID
+                    if (e.empid==empid) {
+                        return (e.name,
+                            e.playDate,
+                            e.connectedParts);
+                    }
+            }
+            // If the player ID doesn't exist, state so.
+            return('Not Found', 
+                'Not Found', 
+                'Not Found');
+        }
+
     function checkForMint() external onlyOwner { // Whoever deploys, is the only one that can run this function
         isMintEnabled = !isMintEnabled; // When ran, change to True.
     }
