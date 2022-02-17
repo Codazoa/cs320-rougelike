@@ -30,6 +30,7 @@ contract playerMintContract is ERC721, Ownable {
         string name;
         string playDate;
         string connectedParts;
+        string numberOfDeaths;
     }
 
     Player []emps;
@@ -38,15 +39,21 @@ contract playerMintContract is ERC721, Ownable {
     function addPlayer(
         int empid, string memory name,
         string memory playDate,
-        string memory connectedParts
+        string memory connectedParts,
+        string memory numberOfDeaths
     ) public {
         Player memory e
-            = Player(empid, name, playDate, connectedParts);
+            = Player(empid, 
+            name, 
+            playDate, 
+            connectedParts, 
+            numberOfDeaths);
         emps.push(e);
     }
 
     // Function to get player details
     function getPlayer(int empid) public view returns(
+        string memory,
         string memory,
         string memory,
         string memory) 
@@ -60,16 +67,18 @@ contract playerMintContract is ERC721, Ownable {
                     if (e.empid==empid) {
                         return (e.name,
                             e.playDate,
-                            e.connectedParts);
+                            e.connectedParts,
+                            e.numberOfDeaths);
                     }
             }
             // If the player ID doesn't exist, state so.
             return('Not Found', 
                 'Not Found', 
+                'Not Found',
                 'Not Found');
         }
 
-    function checkForMint() external onlyOwner { // Whoever deploys, is the only one that can run this function
+    function enableMinting() external onlyOwner { // Whoever deploys, is the only one that can run this function
         isMintEnabled = !isMintEnabled; // When ran, change to True.
     }
 
