@@ -27,7 +27,7 @@ the room located at said coordinates is non-zero. (if non-zero, return true)
 """
 func roomIsRoomCheck(givenX, givenY):
 	if(!roomIsLegal(givenX, givenY)): return false;
-	if(floorPlan[givenX][givenY] != 0): return true;
+	if(floorPlan[givenX][givenY].getRoomID() != 0): return true;
 	return false;
 
 """
@@ -72,22 +72,22 @@ of the first instance it can find of desiredBorderID. If it cannot be found, a 1
 func findFirstDesiredBorderID(givenX, givenY, desiredBorderID):
 	var coordinates = [];
 	#Upper
-	if(roomIsLegal(givenX, givenY-1) && (floorPlan[givenX][givenY-1] == desiredBorderID) ): 
+	if(roomIsLegal(givenX, givenY-1) && (floorPlan[givenX][givenY-1].getRoomID() == desiredBorderID) ): 
 		coordinates.append(givenX);
 		coordinates.append(givenY-1);
 		return coordinates;
 	#Lower
-	if(roomIsLegal(givenX, givenY+1) &&  (floorPlan[givenX][givenY+1] == desiredBorderID) ):
+	if(roomIsLegal(givenX, givenY+1) &&  (floorPlan[givenX][givenY+1].getRoomID() == desiredBorderID) ):
 		coordinates.append(givenX);
 		coordinates.append(givenY+1);
 		return coordinates;
 	#Left
-	if(roomIsLegal(givenX-1, givenY) &&  (floorPlan[givenX-1][givenY] == desiredBorderID) ) :
+	if(roomIsLegal(givenX-1, givenY) &&  (floorPlan[givenX-1][givenY].getRoomID() == desiredBorderID) ) :
 		coordinates.append(givenX-1);
 		coordinates.append(givenY);
 		return coordinates;
 	#Right
-	if(roomIsLegal(givenX+1, givenY) &&  (floorPlan[givenX+1][givenY] == desiredBorderID) ):
+	if(roomIsLegal(givenX+1, givenY) &&  (floorPlan[givenX+1][givenY].getRoomID() == desiredBorderID) ):
 		coordinates.append(givenX+1);
 		coordinates.append(givenY);
 		return coordinates;
@@ -126,13 +126,13 @@ func findDeadendRoom(defaultRoomID, placementID):
 	
 		#Check if legal roomID, and if room is of placementID
 		legalRoomIDCheck = false;
-		if(roomIsLegal(chosenX, chosenY) && ( floorPlan[chosenX][chosenY] == placementID) ): legalRoomIDCheck = true;
+		if(roomIsLegal(chosenX, chosenY) && ( floorPlan[chosenX][chosenY].getRoomID() == placementID) ): legalRoomIDCheck = true;
 		
 		#Check if spot has 1 bordering room
 		legalBorderCheck = false;
 		if(roomBorderCount(chosenX, chosenY) == 1):
 			var result = findFirstDesiredBorderID(chosenX, chosenY, defaultRoomID);
-			if( (result[0] != -1) && (floorPlan[result[0]][result[1]] == defaultRoomID) ): legalBorderCheck = true;
+			if( (result[0] != -1) && (floorPlan[result[0]][result[1]].getRoomID() == defaultRoomID) ): legalBorderCheck = true;
 	
 	#print("While loop completed. legalRoomIDCheck: "+str(legalRoomIDCheck)+", legalBorderCheck: "+str(legalBorderCheck)+", fullLoopCheck: "+str(fullLoopCheck));
 	
@@ -186,7 +186,7 @@ func placeRoom(givenX, givenY, currentDepth):
 	if( (rng.randi_range(0, 100) < 50) && (currentRoomCount > 1) ): return -1; #Random chance to not place room
 	
 	#Place room
-	floorPlan[givenX][givenY] = 1;
+	floorPlan[givenX][givenY].setRoomID(1);
 	currentRoomCount += 1;
 
 	#Recurse on all cardinally adjacent rooms (in semi-random order)
@@ -216,7 +216,7 @@ func createEmptyFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight):
 		floorPlan.append([]);
 		for j in range(0, givenFloorPlanHeight):
 			floorPlan[i].append([]);
-			floorPlan[i][j] = 0;
+			floorPlan[i][j] = roomNode.new(0);
 
 """
 Generates a floor plan and places it in the variable floorPlan. Takes three integers, denoting the width and height of the floor plan, and the desired number of rooms in the floorplan
@@ -251,12 +251,12 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 	chosenIndex = rng.randi_range(0, deadendCoords.size()-1); #Choose random index from list of deadends
 	var spawnRoomCoords = deadendCoords[chosenIndex]; #Records coordinates at index for later
 	deadendCoords.remove(chosenIndex); #Remove coordinates from list
-	floorPlan[spawnRoomCoords[0]][spawnRoomCoords[1]] = 2; #Place spawn room
+	floorPlan[spawnRoomCoords[0]][spawnRoomCoords[1]].setRoomID(2); #Place spawn room
 
 		#Place boss room
 	#Cycle through entire deadendCoords list
 	var bossRoomCoordsIndex = findFurthestDeadEnd(spawnRoomCoords, deadendCoords);
-	floorPlan[deadendCoords[bossRoomCoordsIndex][0]][deadendCoords[bossRoomCoordsIndex][1]] = 3;
+	floorPlan[deadendCoords[bossRoomCoordsIndex][0]][deadendCoords[bossRoomCoordsIndex][1]].setRoomID(3);
 
 """
 findFurthestDeadEnd() takes two parameters, the first is an integer array that denotes the coordinates of a room 
@@ -302,12 +302,12 @@ func buildFloorPlan(event):
 		for j in range(0, desiredHeight):
 			var new_instance = -1;
 			#Identify what room id is
-			if(floorPlan[i][j] == 1): 
+			if(floorPlan[i][j].getRoomID() == 1): 
 				placeObject(event, generalRoom.instance(), i, j);
 				pass;
-			elif(floorPlan[i][j] == 2):
+			elif(floorPlan[i][j].getRoomID() == 2):
 				placeObject(event, spawnRoom.instance(), i, j);
-			elif(floorPlan[i][j] == 3):
+			elif(floorPlan[i][j].getRoomID() == 3):
 				placeObject(event, bossRoom.instance(), i, j);
 			else:
 				placeObject(event, wall.instance(), i, j);
