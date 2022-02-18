@@ -9,7 +9,7 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 
 // Create the contract, inherits ERC721 and Ownable
 contract playerMintContract is ERC721, Ownable {
-    uint256 public mintPrice = 0.01 ether; // Define cost int of the ERC721 token
+    uint256 public mintPrice = 1 ether; // Define cost int of the ERC721 token
     uint256 public totalSupply; // Define the current number of supply
     uint256 public maxSupply; // Define the maximum supply
     bool public isMintEnabled; // Determines if people can mint the token, default to False
