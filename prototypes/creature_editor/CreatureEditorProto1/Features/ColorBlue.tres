@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://CreatureFeature.gd" type="Script" id=1]
+[ext_resource path="res://kenney_monsterbuilderpack/PNG/Default/body_blueA.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Color Blue"
+stackable = false
+type = 0
+texture = ExtResource( 2 )
