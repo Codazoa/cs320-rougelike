@@ -1,13 +1,20 @@
 extends KinematicBody2D
-const max_dist  = 40
+
 
 var velocity = Vector2.ZERO
 
-onready var target = get_node("../PlayerPos")
+onready var playerPos = get_node("../PlayerPos")
+onready var body =  get_node("../body")
+onready var tailBase = get_node("../tail1")
+onready var tailTip = get_node("../tail2")
+
+func followSeg(curSeg: KinematicBody2D, target:KinematicBody2D, dist: int, delta):
+	curSeg.look_at(target.position)
+	if curSeg.position.distance_to(target.position) > dist:
+		curSeg.position = curSeg.position.move_toward(target.position, delta*200)
 
 func _physics_process(delta):
-	look_at(target.position)
-	
-	if position.distance_to(target.position) > 40:
-		print("too far")
-		position = position.move_toward(target.position, delta*200)
+	followSeg(body, playerPos, 40,  delta)
+	followSeg(tailBase, body, 25, delta)
+	followSeg(tailTip, tailBase, 15,  delta)
+

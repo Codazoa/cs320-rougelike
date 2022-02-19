@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Slug/Slug/pl_head_w.png" type="Texture" id=1]
+[ext_resource path="res://Slug/pl_head_w.png" type="Texture" id=1]
 [ext_resource path="res://Head.gd" type="Script" id=2]
-[ext_resource path="res://Slug/Slug/pl_body_w.png" type="Texture" id=3]
-[ext_resource path="res://KinematicBody2D.gd" type="Script" id=4]
+[ext_resource path="res://Slug/pl_body_w.png" type="Texture" id=3]
+[ext_resource path="res://baseMove.gd" type="Script" id=4]
 [ext_resource path="res://body.gd" type="Script" id=5]
-[ext_resource path="res://Slug/Slug/pl_tail1_w.png" type="Texture" id=6]
-[ext_resource path="res://tail1.gd" type="Script" id=7]
-[ext_resource path="res://Slug/Slug/pl_tail2_w.png" type="Texture" id=8]
-[ext_resource path="res://tail2.gd" type="Script" id=9]
+[ext_resource path="res://Slug/pl_tail1_w.png" type="Texture" id=6]
+[ext_resource path="res://ClawArm.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Slug/pl_tail2_w.png" type="Texture" id=8]
 
 [node name="Node2D" type="Node2D"]
 
@@ -16,7 +15,6 @@
 position = Vector2( 47, 36 )
 rotation = 1.5708
 z_index = 1
-script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="tail2"]
 rotation = 1.5708
@@ -26,7 +24,6 @@ texture = ExtResource( 8 )
 [node name="tail1" type="KinematicBody2D" parent="."]
 position = Vector2( 47, 60 )
 rotation = -3.14159
-script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="tail1"]
 position = Vector2( 11, 0 )
@@ -56,3 +53,11 @@ script = ExtResource( 2 )
 rotation = 1.5708
 z_index = 4
 texture = ExtResource( 1 )
+
+[node name="Position2D" type="Position2D" parent="PlayerPos/Head"]
+position = Vector2( -16, 22 )
+z_index = 3
+
+[node name="base" parent="PlayerPos/Head/Position2D" instance=ExtResource( 7 )]
+scale = Vector2( 1.5, 1.5 )
+left = false
