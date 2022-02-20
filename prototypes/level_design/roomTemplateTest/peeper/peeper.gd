@@ -1,3 +1,4 @@
+#This script was written by Sydney Burgess
 extends KinematicBody2D
 
 """

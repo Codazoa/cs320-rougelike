@@ -1,3 +1,4 @@
+#This script was written by Sydney Burgess
 extends Node
 
 export (PackedScene) var wallScene;
