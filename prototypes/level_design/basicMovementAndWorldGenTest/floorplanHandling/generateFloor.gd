@@ -26,8 +26,10 @@ roomIsRoomCheck() takes two integers denoting coordinates (givenX and givenY), a
 the room located at said coordinates is non-zero. (if non-zero, return true)
 """
 func roomIsRoomCheck(givenX, givenY):
-	if(!roomIsLegal(givenX, givenY)): return false;
-	if(floorPlan[givenX][givenY].getRoomID() != 0): return true;
+	if(!roomIsLegal(givenX, givenY)): 
+		return false;
+	if(floorPlan[givenX][givenY].getRoomID() != 0): 
+		return true;
 	return false;
 
 """
@@ -36,16 +38,20 @@ whether or not said coordinates are within bounds of the floorPlan array.
 """
 func roomIsLegal(givenX, givenY):
 	#Check if passed upper bounds
-	if(givenY < 0): return false;
+	if(givenY < 0): 
+		return false;
 	
 	#Check if passed lower bounds
-	if(givenY >= floorPlan[0].size()-1): return false;	
+	if(givenY >= floorPlan[0].size()-1): 
+		return false;	
 	
 	#Check if passed left bounds
-	if(givenX < 0): return false;	
+	if(givenX < 0): 
+		return false;	
 	
 	#Check if passed right bounds
-	if(givenX >= floorPlan.size()-1): return false;	
+	if(givenX >= floorPlan.size()-1): 
+		return false;	
 	return true;
 
 """
@@ -106,8 +112,6 @@ func findDeadendRoom(defaultRoomID, placementID):
 	#Get random point using size of layout
 	var chosenX = rng.randi_range(0, floorPlan.size()-1);
 	var chosenY = rng.randi_range(0, floorPlan[0].size()-1);
-	var originalX = chosenX;
-	var originalY = chosenY;
 	
 	#Parse until conditions are met
 	while( (!legalRoomIDCheck || !legalBorderCheck) || fullLoopCheck ):
@@ -126,7 +130,8 @@ func findDeadendRoom(defaultRoomID, placementID):
 	
 		#Check if legal roomID, and if room is of placementID
 		legalRoomIDCheck = false;
-		if(roomIsLegal(chosenX, chosenY) && ( floorPlan[chosenX][chosenY].getRoomID() == placementID) ): legalRoomIDCheck = true;
+		var legalPlacementFoundCheck = roomIsLegal(chosenX, chosenY) && ( floorPlan[chosenX][chosenY].getRoomID() == placementID);
+		if( legalPlacementFoundCheck ): legalRoomIDCheck = true;
 		
 		#Check if spot has 1 bordering room
 		legalBorderCheck = false;
@@ -289,6 +294,7 @@ func placeObject(event, givenInstance, i, j):
 	givenInstance.position.x = event.position.x+(i*spriteWidth);
 	givenInstance.position.y = event.position.y+(j*spriteHeight);
 	add_child(givenInstance);
+
 
 """
 DEBUG FUNCTION: Places tiles in accordance to floor plan to allow for visualization of map

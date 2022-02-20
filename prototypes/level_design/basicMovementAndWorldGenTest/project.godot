@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "itemNode",
 "language": "GDScript",
-"path": "res://itemNode.gd"
+"path": "res://floorplanHandling/itemNode.gd"
 }, {
 "base": "Node",
 "class": "roomNode",
 "language": "GDScript",
-"path": "res://roomNode.gd"
+"path": "res://floorplanHandling/roomNode.gd"
 } ]
 _global_script_class_icons={
 "itemNode": "",
@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="basicMovementAndWorldGenTest"
-run/main_scene="res://stage.tscn"
+run/main_scene="res://rooms/stage.tscn"
 
 [display]
 
