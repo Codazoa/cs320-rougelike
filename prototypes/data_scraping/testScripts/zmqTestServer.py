@@ -24,7 +24,8 @@ def wrongFunc(socket):
     socket.send_string('Wrong!')
 
 def getDotRGB(socket):
-    socket.send((23, 34, 55))
+    dict = {'r':23,'g':34,'b':55}
+    socket.send(dict)
 
 def main():
     # set up socket and port listening

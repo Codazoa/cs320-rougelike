@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="data-scraping-prototype"
-run/main_scene="res://Sprite.tscn"
+run/main_scene="res://HttpButtonTest.tscn"
 config/icon="res://icon.png"
 
 [autoload]
