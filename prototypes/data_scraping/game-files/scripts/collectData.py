@@ -1,7 +1,15 @@
 import sys
-from bs4 import BeautifulSoup
+import scrapers as scp
 
-def main(argv = sys.argv[1:]):
+def main():
+    getDot = scp.DotScraper()
+    print(getDot.grabDotRGB())
+
+    print(getDot.lastAccess)
+
+    getDot.updateDot()
+
+    print(getDot.lastAccess)
     pass
 
 if __name__ == '__main__':
