@@ -1,4 +1,4 @@
-import os, zmq
+import os, zmq, time
 from datetime import datetime as dt
 from PIL import Image
 from bs4 import BeautifulSoup
@@ -41,6 +41,17 @@ class CityTempScraper():
         pass
 
 
-class JsonEdit():
-    def __init__(self):
-        pass
+# class JsonEdit():
+#     def __init__(self):
+#         pass
+
+def main():
+    dotInfo = DotScraper()
+    tempInfo = CityTempScraper()
+
+
+
+    pass
+
+if __name__ == '__main__':
+    main()
