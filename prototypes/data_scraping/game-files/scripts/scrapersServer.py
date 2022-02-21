@@ -1,4 +1,4 @@
-import os
+import os, zmq
 from datetime import datetime as dt
 from PIL import Image
 from bs4 import BeautifulSoup
