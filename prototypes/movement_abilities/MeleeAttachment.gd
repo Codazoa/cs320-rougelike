@@ -11,8 +11,6 @@ onready var target_pos = $targetPos
 
 export var active_button = BUTTON_LEFT
 
-
-
 export var is_resting = false
 export var is_winding = false
 export var is_attacking = false
@@ -21,7 +19,8 @@ export var wind_speed = 50
 
 export var attack_speed = 300
 
-
+export var base_damage = 100
+export var damage_mod = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,6 +35,8 @@ func _ready():
 		target_pos.position.y = -target_pos.position.y
 		
 	is_resting = true
+
+#moves claw into windup position
 
 func windup(delta):
 	if is_winding:
@@ -53,6 +54,8 @@ func attack(delta):
 			is_attacking = false
 			is_resting = true
 
+func calc_damage():
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if is_resting:
@@ -69,7 +72,6 @@ func _physics_process(delta):
 	else:
 		is_winding = false
 	
-			
 	windup(delta)
 	
 	if !is_winding:

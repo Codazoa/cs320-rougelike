@@ -6,8 +6,8 @@
 [ext_resource path="res://baseMove.gd" type="Script" id=4]
 [ext_resource path="res://body.gd" type="Script" id=5]
 [ext_resource path="res://Slug/pl_tail1_w.png" type="Texture" id=6]
-[ext_resource path="res://MeleeAttachment.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Slug/pl_tail2_w.png" type="Texture" id=8]
+[ext_resource path="res://GunArm.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 
@@ -55,19 +55,13 @@ z_index = 15
 texture = ExtResource( 1 )
 
 [node name="rightArmSlot" type="Position2D" parent="PlayerPos/Head"]
-position = Vector2( -7, 19 )
+position = Vector2( -7, 21 )
 z_index = 3
 
-[node name="MeleeAttachment" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 7 )]
-scale = Vector2( 1.5, 1.5 )
-z_index = 10
-color = Color( 0.301961, 0.423529, 0.8, 1 )
+[node name="gunArm" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 9 )]
 left = false
 
 [node name="leftArmSlot" type="Position2D" parent="PlayerPos/Head"]
-position = Vector2( 10, -41 )
+position = Vector2( -7, -22 )
 
-[node name="MeleeAttachment" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 7 )]
-position = Vector2( -16, 22 )
-scale = Vector2( 1.25, 1.25 )
-z_index = 10
+[node name="Node2D" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 9 )]

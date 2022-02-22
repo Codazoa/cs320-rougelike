@@ -15,14 +15,13 @@ export var right_offset = 4
 
 onready var target = $target
 
-
 #sets up the sprites of the arm depending on whether it is attached right or left.
-
 func recolor(color):
 	$CrabArmBi.modulate = color
 	elbow.get_node("CrabArmClawA").modulate = color
 	wrist.get_node("CrabArmClawB").modulate = color
 
+#refactors certain specificat
 func make_right():
 	$CrabArmBi.flip_v = true
 	elbow.get_node("CrabArmClawA").flip_v = true
@@ -30,6 +29,7 @@ func make_right():
 		#get_node("CrabArmBi").position = get_node("CrabArmBi").position.y += right_el_offset
 	elbow.get_node("CrabArmClawA").position.y += right_offset
 	wrist.get_node("CrabArmClawB").position.y += -right_offset
+	
 func _ready():
 	len_upper = elbow.position.x
 	len_middle = wrist.position.x
@@ -71,10 +71,8 @@ func update_ik(target_pos):
 	global_rotation = (base_angles.B + next_angles.B + base_r)
 	elbow.rotation = (next_angles.C)
 	wrist.rotation = (base_angles.C * bend_threshold + next_angles.A) 
-		
-		
-# returns all angles in a triangle based on Side-side-side calculation
 
+# returns all angles in a triangle based on Side-side-side calculation
 func SSS_calc(side_a, side_b, side_c):
 	if side_c >= side_a + side_b:
 		return {"A": 0, "B": 0, "C": 0}

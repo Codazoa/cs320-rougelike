@@ -27,7 +27,7 @@ func pass_chain(delta):
 	var l = segLimit
 	
 	while (b >= 0 and l > 0):
-		b = skeleton.get_bone_parent(b)
+		b = skeleton.get_bone_parent(b) 
 		l = l - 1
 	
 func _process(delta):
@@ -35,4 +35,4 @@ func _process(delta):
 
 func _physics_process(delta):
 	clawB.position = clawB.position.move_toward(restPos, 200*delta)
-	pass
+	

@@ -4,6 +4,7 @@
 [ext_resource path="res://MeleeAttachment.gd" type="Script" id=2]
 
 [node name="MeleeAttachment" type="Node2D"]
+position = Vector2( 56, 85 )
 script = ExtResource( 2 )
 
 [node name="ClawArm" parent="." instance=ExtResource( 1 )]
