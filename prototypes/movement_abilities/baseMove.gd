@@ -14,6 +14,9 @@ onready var spr_tail1 = $Tail1/tail1
 onready var spr_tail2 = $Tail1/Tail2/tail2
 
 export (NodePath) var head
+
+#player character moves based on WASD input
+#based on tutorial code i used when first learning godot
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")

@@ -38,11 +38,5 @@ texture = ExtResource( 3 )
 [node name="tip" type="Position2D" parent="elbow/wrist"]
 position = Vector2( 17, 0 )
 
-[node name="rest" type="Position2D" parent="."]
-position = Vector2( 40, -18 )
-
-[node name="wind" type="Position2D" parent="."]
-position = Vector2( 18, -15 )
-
-[node name="hit" type="Position2D" parent="."]
-position = Vector2( 58, -5 )
+[node name="target" type="KinematicBody2D" parent="."]
+position = Vector2( 63, 0 )
