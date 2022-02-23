@@ -58,8 +58,7 @@ func fire(delta):
 		slime_ball.shoot(get_angle_to(get_global_mouse_position()), slime_speed)
 		
 		slime_view.visible = false
-		
-		
+				
 		var timer = Timer.new()
 		self.add_child(timer)
 		timer.connect("timeout", self, "reload")
@@ -67,7 +66,6 @@ func fire(delta):
 		timer.start()
 	
 	knockback(delta)
-
 
 func knockback(delta):
 	var cur_pos = cannon.position
@@ -83,16 +81,13 @@ func reload():
 	is_loaded = true
 	slime_view.visible = true
 
-	
-	
 func _physics_process(delta):
 	arm.look_at(cannon.global_position)
 	cannon.look_at(get_global_mouse_position())
 
 	if Input.is_mouse_button_pressed(active_button):
 		is_charging = true
-		is_resting = false
-		
+		is_resting = false		
 	else:
 		if is_charging:
 			fire(delta)

@@ -1,7 +1,7 @@
-extends KinematicBody2D
-
 #OUTDATED AND OBSOLETE CODE. was based on documentation for 2d Inverse kinematics included in Godot
 #was not satisfied with results so I took a different approach seen in crabArmIK.gd
+
+extends KinematicBody2D
 
 var target
 onready var restPos = get_node("restPos")

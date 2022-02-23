@@ -1,16 +1,18 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Slug/pl_head_w.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Slug/pl_head_w.png" type="Texture" id=1]
 [ext_resource path="res://Head.gd" type="Script" id=2]
-[ext_resource path="res://Slug/pl_body_w.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Slug/pl_body_w.png" type="Texture" id=3]
 [ext_resource path="res://baseMove.gd" type="Script" id=4]
 [ext_resource path="res://body.gd" type="Script" id=5]
-[ext_resource path="res://Slug/pl_tail1_w.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Slug/pl_tail1_w.png" type="Texture" id=6]
 [ext_resource path="res://MeleeAttachment.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Slug/pl_tail2_w.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Slug/pl_tail2_w.png" type="Texture" id=8]
 [ext_resource path="res://GunArm.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Player.gd" type="Script" id=10]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 10 )
 
 [node name="tail2" type="KinematicBody2D" parent="."]
 position = Vector2( 47, 36 )
