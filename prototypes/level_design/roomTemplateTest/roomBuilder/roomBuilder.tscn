@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://roomBuilder/buildRoom.gd" type="Script" id=1]
+[ext_resource path="res://wall/wall.tscn" type="PackedScene" id=2]
+
+
+[node name="roomBuilder" type="Node"]
+script = ExtResource( 1 )
+wallScene = ExtResource( 2 )
