@@ -26,9 +26,8 @@ func _physics_process(delta):
 	if input_vector != Vector2.ZERO:
 		velocity += input_vector * ACCELERATION * delta 
 		velocity = velocity.clamped(MAX_SPEED * delta)
-		print(input_vector.angle())
 		rotation = input_vector.angle()
-		print(rotation)
+	
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	

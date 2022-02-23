@@ -6,9 +6,9 @@ onready var elbow = $elbow
 onready var wrist = $elbow/wrist
 onready var tip = $elbow/wrist/tip
 
-var len_upper = 0
-var len_middle = 0
-var len_lower = 0
+var len_bi = 0
+var len_claw = 0
+var len_wrist = 0
 
 export var left = true
 export var right_offset = 4
@@ -31,11 +31,10 @@ func make_right():
 	wrist.get_node("CrabArmClawB").position.y += -right_offset
 	
 func _ready():
-	len_upper = elbow.position.x
-	len_middle = wrist.position.x
-	len_lower = tip.position.x
+	len_bi = elbow.position.x
+	len_claw = wrist.position.x
+	len_wrist = tip.position.x
 
-	
 	if !left:
 		make_right()
 		
@@ -45,8 +44,12 @@ func _process(delta):
 	update_ik(target.position)
 
 #This function updates the angles of the joints depending on the position of the target
-#Adapted from a inverse kinematics tutorial on youtube
+#Adapted from a inverse kinematics tutorial on youtube.
+#meaning I followed a tutorial for another project and implemented it myself for this one
+#though there is probably alot of similarity
+
 func update_ik(target_pos):
+	#Offset gives the angle and distance between target and base
 	var offset = target_pos - global_position
 	var dis_to_tar = offset.length()
 	if dis_to_tar < MIN_DIST:
@@ -54,23 +57,23 @@ func update_ik(target_pos):
 		dis_to_tar = MIN_DIST
 
 	var base_r = offset.angle()
-	var len_total = len_upper + len_middle + len_lower
+	var len_total = len_bi + len_claw + len_wrist
 	
 	var bend_threshold = 1.2
 	var dist_ratio = dis_to_tar / len_total
 	
-	var len_dummy_side = (len_upper + len_middle) * clamp(dist_ratio, 0.0, 1)
+	var len_dummy_side = (len_bi + len_claw) * clamp(dist_ratio, 0.0, 1)
  
-	var base_angles = SSS_calc(len_dummy_side, len_lower, dis_to_tar)
-	var next_angles = SSS_calc(len_upper, len_middle, len_dummy_side)
+	var base_angles = SSS_calc(len_dummy_side, len_wrist, dis_to_tar)
+	var dummy_angles = SSS_calc(len_bi, len_claw, len_dummy_side)
 	
 	var wrist_increase = -curve(dist_ratio)*PI/4
 	if left:
 		wrist_increase = -wrist_increase
  
-	global_rotation = (base_angles.B + next_angles.B + base_r)
-	elbow.rotation = (next_angles.C)
-	wrist.rotation = (base_angles.C * bend_threshold + next_angles.A) 
+	global_rotation = (base_angles.B + dummy_angles.B + base_r)
+	elbow.rotation = (dummy_angles.C)
+	wrist.rotation = (base_angles.C + dummy_angles.A + wrist_increase) 
 
 # returns all angles in a triangle based on Side-side-side calculation
 func SSS_calc(side_a, side_b, side_c):
@@ -91,7 +94,7 @@ func SSS_calc(side_a, side_b, side_c):
 func law_of_cos(a, b, c):
 	if 2 * a * b == 0:
 		return 0
-	return acos( (a * a + b * b - c * c) / ( 2 * a * b) )
+	return acos( ((a * a) + (b * b) - (c * c)) / ( 2 * (a * b)) )
 
 #very simple bell curve calculation, used to increase claw angle based on extension of the arm
 func curve(x):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Slug/pl_head_w.png" type="Texture" id=1]
 [ext_resource path="res://Head.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://baseMove.gd" type="Script" id=4]
 [ext_resource path="res://body.gd" type="Script" id=5]
 [ext_resource path="res://Slug/pl_tail1_w.png" type="Texture" id=6]
+[ext_resource path="res://MeleeAttachment.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Slug/pl_tail2_w.png" type="Texture" id=8]
 [ext_resource path="res://GunArm.tscn" type="PackedScene" id=9]
 
@@ -58,10 +59,13 @@ texture = ExtResource( 1 )
 position = Vector2( -7, 21 )
 z_index = 3
 
-[node name="gunArm" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 9 )]
+[node name="MeleeAttachment" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 7 )]
+scale = Vector2( 1.2, 1.2 )
+color = Color( 0.301961, 0.4, 0.8, 1 )
 left = false
 
 [node name="leftArmSlot" type="Position2D" parent="PlayerPos/Head"]
 position = Vector2( -7, -22 )
+z_index = 3
 
 [node name="Node2D" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 9 )]
