@@ -8,22 +8,37 @@ import time
 
 def main():
     # Open the remix IDE
-    driver = webdriver.Firefox(executable_path = r'C:\Users\ronny\Desktop\Automation\Automation\geckodriver.exe')
-    driver.get('https://remix.ethereum.org')
+    try:
+        driver = webdriver.Firefox(executable_path = r'C:\Users\ronny\Desktop\Automation\Automation\geckodriver.exe')
+        url = 'https://remix.ethereum.org'
+
+    except: # Checks to make sure the path to the file is correct.
+        print("Invalid path to geckodriver.exe.")
+        return False
+
+    try:
+        driver.get(url)
+
+    except: # Checks if there was a working URL, if not, print so, then return false to stop the script.
+        print("Invalid URL Entered in 'url' variable.")
+        return False
 
     time.sleep(1.25)
     while (True):
         # Make a new tab to put code into
         pyautogui.hotkey('ctrl', 't')
-        time.sleep(0.5)
+        print('Creating new tab...')
+        time.sleep(0.50) 
         pyautogui.write('https://www.editpad.org/')
-        time.sleep(0.5)
+        time.sleep(0.50)
         pyautogui.press('enter')
+        print("Opening online notepad.")
         mouse.move(394,329, absolute = True, duration = 0.25)
-        time.sleep(0.20)
+        time.sleep(0.50)
         mouse.click(button = 'left')
-        time.sleep(0.20)
+        time.sleep(0.50)
         # Type in my code
+        print("Writing code...")
         pyautogui.write('''
 // Ronny - Valtonen
 // SPDX-License-Identifier: <SPDX-License>: UNLICENSED
@@ -138,11 +153,13 @@ contract playerMintContract is ERC721, Ownable {
 }        
         ''')
         time.sleep(3)
+        print("Copying code.")
         # Copy the code
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.hotkey('ctrl', 'c')
 
         # Get into remix IDE
+        print("Going to Remix IDE")
         mouse.move(178, 27, absolute = True, duration = 0.20)
         mouse.click(button = 'left')
         mouse.move(791, 504, absolute = True, duration = 0.5)
@@ -163,8 +180,10 @@ contract playerMintContract is ERC721, Ownable {
         mouse.move(535, 145, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
         # Paste the code
+        print("Pasting the code")
         pyautogui.hotkey('ctrl', 'v')
         time.sleep(0.20)
+        print("Compiling code")
         pyautogui.hotkey('ctrl', 's')
         mouse.move(35, 262, absolute = True, duration = 0.25)
         time.sleep(3)
@@ -181,44 +200,53 @@ contract playerMintContract is ERC721, Ownable {
         mouse.click(button = 'left')
         mouse.move(153, 406, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Paying for NFT")
         pyautogui.write('1000000000000000000')
         # Mint the NFT
         mouse.move(125, 982, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Minting NFT")
         mouse.move(328, 826, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
 
         # Read metadata of character
+        print("Opening metadata")
         file = open('metadata.txt')
         content = file.readlines()
 
         # Enter empID
         mouse.move(294, 855, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Entering empID")
         pyautogui.write(content[0])
 
         # Enter name
         mouse.move(294, 891, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Entering name")
         pyautogui.write(content[1])
 
         # Enter playDate
         mouse.move(294, 930, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Entering play date")
         pyautogui.write(content[2])
 
         # Enter connectedParts
         mouse.move(294, 960, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Entering the connected parts")
         pyautogui.write(content[3])
 
         # Enter numberOfDeaths
         mouse.move(294, 990, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Entering the number of deaths")
         pyautogui.write(content[4])
 
         # Transact into the blockchain
         mouse.move(294, 1029, absolute = True, duration = 0.25)
+        print("Transaction phase..")
         mouse.click(button = 'left')
 
         # Scroll down a bit
@@ -228,19 +256,32 @@ contract playerMintContract is ERC721, Ownable {
         # Get player information using the function
         mouse.move(200, 901, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        print("Finding the player info")
         pyautogui.write(content[0])
+
+        # Close the file
+        file.close()
+
         mouse.move(116, 901, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
 
         # Scroll down
         mouse.move(365, 964, absolute = True, duration = 0.25)
         mouse.click(button = 'left')
+        time.sleep(5)
+        mouse.move(141, 515, absolute = True, duration = 0.25)
+        mouse.click(button = 'left')
+
+        time.sleep(10)
+        driver.quit()
 
 
 
 
         time.sleep(3)
         print(mouse.get_position())
+
+        print("Done!")
         return False
 
 
@@ -248,5 +289,3 @@ contract playerMintContract is ERC721, Ownable {
 
 if __name__ == '__main__':
     main()
-
-print("Done")
