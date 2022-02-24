@@ -21,10 +21,12 @@ position = Vector2( 67, 19 )
 [node name="windPos" type="Position2D" parent="."]
 position = Vector2( 6, -26 )
 
-[node name="Hitbox" type="KinematicBody2D" parent="."]
+[node name="Hitbox" type="KinematicBody2D" parent="." groups=["PDamager"]]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource( 3 )
 
-[node name="HitDetector" type="CollisionShape2D" parent="Hitbox"]
+[node name="HitDetector" type="CollisionShape2D" parent="Hitbox" groups=["Damager"]]
 position = Vector2( -13, -1 )
 scale = Vector2( 1.2, 1 )
 shape = SubResource( 1 )

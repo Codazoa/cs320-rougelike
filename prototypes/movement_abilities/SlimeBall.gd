@@ -8,18 +8,16 @@ export var damage = 20
 
 var trajectory = Vector2()
 
+#recolor sprite
 func recolor(color):
 	sprite.modulate = color
 	
+#move towards target
 func shoot(dir, speed):
 	var mod_dir = get_angle_to(get_global_mouse_position())
 	var angle = Vector2(cos(mod_dir), sin(mod_dir))
 	trajectory = angle*speed
 	
-func deal_damage(damage, target):
-	pass
-
-
 func _ready():
 	var timer = Timer.new()
 	self.add_child(timer)
@@ -29,9 +27,6 @@ func _ready():
 	timer.start()
 		
 	sprite.rotation = get_angle_to(get_global_mouse_position()) + PI/2
-	
-func on_hit():
-	pass
 	
 func _process(delta):
 	move_and_collide(trajectory)

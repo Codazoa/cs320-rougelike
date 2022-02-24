@@ -40,7 +40,7 @@ func _ready():
 		
 #currently follows mouse movement for testing
 func _process(delta):
-
+	#target.position
 	update_ik(target.position)
 
 #This function updates the angles of the joints depending on the position of the target

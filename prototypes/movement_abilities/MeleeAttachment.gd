@@ -46,7 +46,8 @@ func windup(delta):
 	if is_winding:
 		if (arm.target.position != wind_pos.position):
 			arm.target.position = arm.target.position.move_toward(wind_pos.global_position, delta*wind_speed)
-		
+
+#plays attack animation and activates hitbox
 func attack(delta):
 	hitdetector.disabled = false
 	var cur_pos = arm.target.position
@@ -87,6 +88,7 @@ func _physics_process(delta):
 		attack(delta)
 	#if Input.is_mouse_button_released(active_button):
 
+#checks if position is in given range
 func in_range(pos1, pos2, prox):
 	var x_thresh = pos2.x - pos1.x
 	var y_thresh = pos2.y - pos1.y

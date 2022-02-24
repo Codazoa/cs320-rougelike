@@ -10,7 +10,6 @@ onready var tailTip = get_node("../tail2")
 export var color = Color(255,255,255)
 
 #Body segments follow their target
-
 func recolor():
 	body.get_node("Sprite").modulate = color
 	tailBase.get_node("Sprite").modulate = color
