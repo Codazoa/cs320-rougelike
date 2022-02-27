@@ -1,40 +1,63 @@
-import os, zmq, time, random, json
+import os time, random, json
+from bottle import route, run, template
 from datetime import datetime as dt
 from PIL import Image
 from bs4 import BeautifulSoup
-import requests
+import requests, threading
 
 import config
 
-class DotScraper():
-    def __init__(self):
-        self.dotURL = 'https://global-mind.org/gcpdot/' # url to the global dot
-        self.dotPNGPath = '../data/dot.png'
-        self.lastAccess = () # time we last downloaded the dot, no more than once every 5 min
-
-    def __accessTime(self, dateTime): # update the lastAccess time with new dateTime object h:m
-        hr = dateTime.hour
-        min = dateTime.minute
-        self.lastAccess = (hr, min)
-        return((hr, min))
-
-    def updateDot(self): # download the new image of the dot, store in ../data/ as dot.png
-        # page = BeautifulSoup
-        self.__accessTime(dt.now())
+class Server():
+    def __init__(self, dot, weather):
         pass
 
-    def grabDotRGB(self): # return the rgb value of the center of the dot.png file in ../data/
+    def run(self):
+        while True:
+            pass
+        pass
+
+
+class DotScraper():
+    def __init__(self, update):
+        self.updateInterval = update
+        self.dotURL = 'https://global-mind.org/gcpdot/gcp.html' # url to the global dot
+        self.dotPNGPath = 'data/dot.png' # path to where we store the dot
+        self.lastAccess = 0 # time we last downloaded the dot, no more than once every <updateInterval> minutes
+        self.curDotRGB = () # save the tuple of the current dot rgb values so that we don't have to download again
+        self.updateDot()
+
+    def checkUpdateInterval(self): # returns true if beyond update interval, false if within interval
+        return ((time.time() - self.lastAccess) > (60*self.updateInterval))
+
+    def updateDot(self): # download the new image of the dot, store as ../data/dot.png
+        if self.checkUpdateInterval():
+            fireFoxOptions = webdriver.FirefoxOptions() # set up driver options
+            fireFoxOptions.headless = True # set the driver to use a headless client
+            print('Grabbing Dot png')
+            driver = webdriver.Firefox(options=fireFoxOptions)
+            driver.get(url) # go to the url that contains the dot
+            time.sleep(1)
+
+            driver.get_full_page_screenshot_as_file("data/dot.png") # save the dot as a png
+
+            driver.close() # close the webdriver
+            self.lastAccess = time.time()
+
+    def updateCurDotRGB(self): # return the rgb value of the center of the dot.png file in ../data/
         dot = Image.open(self.dotPNGPath) # open the image
         size = dot.size # find image size
         pixAccess = dot.load() # load the pixel Access object
-        return pixAccess[size[0]/2,size[1]/2][:3] # return tuple with (R, G, B) values
+        self.curDotRGB = pixAccess[size[0]/2,size[1]/2][:3] # set the curDotRGB
 
 
 class CityTempScraper():
-    def __init__(self):
-        self.tempData = dict() # dict of weather data for each city {'city': int}
-        self.api = config.api_key
-        self.city_names = ['Yamoussoukro (official)', 'Abu Dhabi', 'Abuja', 'Accra', 'Adamstown',
+    def __init__(self, update):
+        self.updateFreq = update # set the update frequency in minutes (api can only be called 60 times in 60 minutes)
+        self.cityWeather = dict() # dict of weather data for each city {'city': {'main': {}}, {'wind': {}}}
+        self.api = config.api_key # storing api key semi securly
+        self.lastUpdate = 0 # for tracking time of updates to dicts
+        self.tempCityList = [] # list to hold names of current cities we have data for (changes every 10 min)
+        self.cityNames = ['Yamoussoukro (official)', 'Abu Dhabi', 'Abuja', 'Accra', 'Adamstown',
                           'Addis Ababa', "Sana'a (de jure)", 'Algiers', 'Alofi', 'Amman',
                           'The Hague (de facto)', 'Andorra la Vella', 'Ankara', 'Antananarivo',
                           'Apia', 'Ashgabat', 'Asmara', 'Asunción', 'Athens', 'Avarua', 'Baghdad',
@@ -76,40 +99,57 @@ class CityTempScraper():
                           'Vatican City', 'Victoria', 'Vienna', 'Vientiane', 'Vilnius', 'Warsaw',
                           'Washington, D.C.', 'Wellington', 'West Island', 'Willemstad', 'Windhoek', 'Yaoundé',
                           'Yaren (de facto)', 'Yerevan', 'Zagreb']
-        self.generateTempData()
-        pass
+        self.updateCityWeather()
 
-    def __createApiUrl(self, city):
+    def updateCityWeather(self): # update the city weather with <updateFreq> new entries (this should only happen every <updateFreq> min)
+        self.cityWeather.clear() # clear the weather information
+        self.tempCityList.clear() # clear the city list information
+        if(time.time() - self.lastUpdate > (60*self.updateFreq)): # only update if we are past the update frequency
+            for i in range(self.updateFreq):
+                city = self.__getRandCity(self.cityNames) # pick a random city name
+                self.cityWeather[city] = self.retrieveWeatherData(city) # add that city and its weather to the dict
+                self.tempCityList.append(city)
+                self.lastUpdate = time.time()
+
+    def __getRandCity(self, cityList): # return a random city from the cityList
+        random.seed(time.time())
+        return random.choice(cityList)
+
+    def __createApiUrl(self, city): # returns the usable api url
         return f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={self.api}'
 
-    def generateTempData(self):
-        self.tempData.clear()
-        random.seed(time.time())
-        for i in range(10): # only grab 30 to not get rate limited
-            city = random.choice(self.city_names)
-            apiUrl = self.__createApiUrl(city)
 
-            rawData = request("GET", apiUrl)
-            jsonData = json.loads(rawData.text)
-            temp = jsonData.get('main').get('temp')
+    def retrieveWeatherData(self, city): # retrieves weather data for a particular city
+        rawData = request("GET", self.__createApiUrl(city)) # get the raw json from the api
+        jsonData = json.loads(rawData.text) # so we can parse the json returned
 
-            self.tempData[city] = temp
+        dataDict = dict() # dict to hold the main and wind weather information
 
-    def grabTemps(self):
-        pass
+        # set main and wind in dict
+        dataDict['main'] = jsonData.get('main')
+        dataDict['wind'] = jsonData.get('wind')
+
+        return dataDict
 
 
-class JsonEdit():
-    def __init__(self):
-        pass
+    def getRandMainWeather(self): # get the main weather data of a random city, returns dict
+        city = self.__getRandCity(self.tempCityList)
+        return (city, self.cityWeather.get(city).get('main'))
+
+
+    def getRandWindWeather(self): # get the wind (m/s) of a random city, return dict
+        city = self.__getRandCity(self.tempCityList)
+        return (city, self.cityWeather.get(city).get('wind'))
+
+
+@route('/data/dotRGB')
+def getdotRGB():
+    pass
 
 def main():
     dotInfo = DotScraper()
     tempInfo = CityTempScraper()
 
-    while True:
-        pass
-    pass
 
 if __name__ == '__main__':
     main()
