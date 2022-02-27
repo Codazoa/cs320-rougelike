@@ -1,33 +1,23 @@
-import os time, random, json
-from bottle import route, run, template
+import os, time, random, json
 from datetime import datetime as dt
 from PIL import Image
 from bs4 import BeautifulSoup
-import requests, threading
+import requests
 
 import config
-
-class Server():
-    def __init__(self, dot, weather):
-        pass
-
-    def run(self):
-        while True:
-            pass
-        pass
 
 
 class DotScraper():
     def __init__(self, update):
-        self.updateInterval = update
+        self.updateFreq = update
         self.dotURL = 'https://global-mind.org/gcpdot/gcp.html' # url to the global dot
         self.dotPNGPath = 'data/dot.png' # path to where we store the dot
         self.lastAccess = 0 # time we last downloaded the dot, no more than once every <updateInterval> minutes
         self.curDotRGB = () # save the tuple of the current dot rgb values so that we don't have to download again
         self.updateDot()
 
-    def checkUpdateInterval(self): # returns true if beyond update interval, false if within interval
-        return ((time.time() - self.lastAccess) > (60*self.updateInterval))
+    def checkUpdateInterval(self): # returns true if beyond update frequency, false if within frequency
+        return ((time.time() - self.lastAccess) > (60*self.updateFreq))
 
     def updateDot(self): # download the new image of the dot, store as ../data/dot.png
         if self.checkUpdateInterval():
@@ -42,6 +32,7 @@ class DotScraper():
 
             driver.close() # close the webdriver
             self.lastAccess = time.time()
+            self.updateCurDotRGB() # update the dot so we could return it
 
     def updateCurDotRGB(self): # return the rgb value of the center of the dot.png file in ../data/
         dot = Image.open(self.dotPNGPath) # open the image
@@ -50,7 +41,7 @@ class DotScraper():
         self.curDotRGB = pixAccess[size[0]/2,size[1]/2][:3] # set the curDotRGB
 
 
-class CityTempScraper():
+class CityWeatherScraper():
     def __init__(self, update):
         self.updateFreq = update # set the update frequency in minutes (api can only be called 60 times in 60 minutes)
         self.cityWeather = dict() # dict of weather data for each city {'city': {'main': {}}, {'wind': {}}}
@@ -101,10 +92,13 @@ class CityTempScraper():
                           'Yaren (de facto)', 'Yerevan', 'Zagreb']
         self.updateCityWeather()
 
+    def checkUpdateInterval(self): # returns true if beyond update frequency, false if within frequency
+        return ((time.time() - self.lastAccess) > (60*self.updateFreq))
+
     def updateCityWeather(self): # update the city weather with <updateFreq> new entries (this should only happen every <updateFreq> min)
         self.cityWeather.clear() # clear the weather information
         self.tempCityList.clear() # clear the city list information
-        if(time.time() - self.lastUpdate > (60*self.updateFreq)): # only update if we are past the update frequency
+        if(self.checkUpdateInterval()): # only update if we are past the update frequency
             for i in range(self.updateFreq):
                 city = self.__getRandCity(self.cityNames) # pick a random city name
                 self.cityWeather[city] = self.retrieveWeatherData(city) # add that city and its weather to the dict
@@ -118,7 +112,6 @@ class CityTempScraper():
     def __createApiUrl(self, city): # returns the usable api url
         return f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={self.api}'
 
-
     def retrieveWeatherData(self, city): # retrieves weather data for a particular city
         rawData = request("GET", self.__createApiUrl(city)) # get the raw json from the api
         jsonData = json.loads(rawData.text) # so we can parse the json returned
@@ -131,25 +124,10 @@ class CityTempScraper():
 
         return dataDict
 
-
     def getRandMainWeather(self): # get the main weather data of a random city, returns dict
         city = self.__getRandCity(self.tempCityList)
         return (city, self.cityWeather.get(city).get('main'))
 
-
     def getRandWindWeather(self): # get the wind (m/s) of a random city, return dict
         city = self.__getRandCity(self.tempCityList)
         return (city, self.cityWeather.get(city).get('wind'))
-
-
-@route('/data/dotRGB')
-def getdotRGB():
-    pass
-
-def main():
-    dotInfo = DotScraper()
-    tempInfo = CityTempScraper()
-
-
-if __name__ == '__main__':
-    main()
