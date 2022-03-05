@@ -8,9 +8,19 @@ extends Node
 
 onready var Enemy = find_node("EnemyCreator")
 
-func spawnEnemy(positionX: int, positionY: int, enemyType: String):
+func spawnEnemy(positionX: int, maxX: int, positionY: int, maxY: int, enemyType: String):
 	var enemy = Enemy.instace()
-
+	
+	assert(enemyType != null)
+	
+	enemy.setEnemy(enemyType)
+	
+	enemy.position = Vector2(positionX, positionY)
+	
+	enemy.updateMax(maxX, maxY)
+	
+	add_child(enemy)
+	
 	
 	
 	

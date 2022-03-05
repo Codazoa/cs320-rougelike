@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="Enemy Creator"
+run/main_scene="res://enemy_creator.tscn"
 config/icon="res://icon.png"
 
 [physics]
