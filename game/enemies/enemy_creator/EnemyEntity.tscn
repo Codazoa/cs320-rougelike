@@ -14,9 +14,9 @@ radius = 44.1022
 extents = Vector2( 21.25, 10.25 )
 
 [node name="EnemyEntity" type="Node"]
-script = ExtResource( 1 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
 

@@ -7,13 +7,13 @@ extends KinematicBody2D
 #	can be changed or modified later. Its the base object
 #
 
-onready var mySprite = $KinematicBody2D/AnimatedSprite
-onready var myHitbox = $KinematicBody2D/Hitbox
-onready var myAggroRange = $KinematicBody2D/AggroRange
-onready var myAttackPoint = $KinematicBody2D/AttackPoint
+onready var mySprite = $AnimatedSprite
+onready var myHitbox = $HitBox
+onready var myAggroRange = $AggroRange
+onready var myAttackPoint = $AttackPoint
 
-onready var myAggroShape = $KinematicBody2D/AggroRange/AggroShape
-onready var myAttackRange = $KinematicBody2D/AttackPoint/AttackRange
+onready var myAggroShape = $AggroRange/AggroShape
+onready var myAttackRange = $AttackPoint/AttackRange
 
 
 # Booleans
@@ -54,7 +54,7 @@ func _ready():
 
 func _physics_process(_delta):
 	
-	if mySprite.current_animation == "Attack":
+	if mySprite.get_animation() == "Attack":
 		return
 	
 	updateMovement()
@@ -83,7 +83,7 @@ func updateMovement():
 				
 				mySprite.play("right")
 				
-				myAttackRange.rotate = 0
+				#myAttackRange.rotate = 0
 				myAttackRange.position.x = 0
 				
 			# If the direction is left and is more than Y, animation X left
@@ -92,7 +92,7 @@ func updateMovement():
 				
 				mySprite.play("left")
 				
-				myAttackRange.rotate = 0
+				#myAttackRange.rotate = 0
 				myAttackRange.position.x = -20
 				
 			
@@ -102,7 +102,7 @@ func updateMovement():
 				
 				mySprite.play("down")
 				
-				myAttackRange.rotate = 90
+				#myAttackRange.rotate = 90
 				myAttackRange.position.y = 20
 				
 				
@@ -112,7 +112,7 @@ func updateMovement():
 				
 				mySprite.play("up")
 				
-				myAttackRange.rotate = 90
+				#myAttackRange.rotate = 90
 				myAttackRange.position.y = -20
 			
 			velocity = move_and_slide(velocity)
@@ -166,11 +166,11 @@ func endOfHit():
 	myAttackPoint.monitoring = false
 	
 
-func _on_VisionRange_body_entered(body):
+func _on_VisionRange_body_entered(_body):
 	tracking = true
 	
 
-func _on_VisionRange_body_exited(body):
+func _on_VisionRange_body_exited(_body):
 	tracking = false
 
 
