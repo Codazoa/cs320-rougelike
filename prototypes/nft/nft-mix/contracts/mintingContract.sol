@@ -1,11 +1,16 @@
 // Ronny - Valtonen
-// SPDX-License-Identifier: <SPDX-License>: UNLICENSED
+// SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.4; // Use 0.8.4 to not break everything
 
 // Import a few things, ERC721 contract and Ownable contract
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/access/Ownable.sol';
+import "remix_tests.sol"; 
+
+// Import the minting contract to run off of.
+import "remix_accounts.sol";
+
 
 // Create the contract, inherits ERC721 and Ownable
 contract playerMintContract is ERC721, Ownable {
@@ -108,6 +113,31 @@ contract playerMintContract is ERC721, Ownable {
         uint256 tokenId = totalSupply;
         _safeMint(msg.sender, tokenId); // Distributes NFT correctly
     }
+    // Before all, black-box testing
+    // Make payable to check for the msg and sender..
+    function beforeAll() public {
+        // Instantiate contract
+        uint expected = 1;
+        Assert.lesserThan(maxSupply, expected, "max supply bought must be less than the total supply");
+
+        // Verify that minting was enabled, if not, no reason to proceed with future testing.
+        // Required tests must be put in a beforeAll() function to test these 'before' going on.
+        assert(isMintEnabled == true);
+
+    }
+
+    function checkSuccess() public{
+        // Use 'Assert' methods
+        Assert.ok(totalSupply == 1, "should be true"); // After minting, the supply should be 1 of 1.
+    }
+
+
+    // Custom Transaction Test
+    // #sender: account-1
+    // #value: 100
+    function checkSenderAndValue() public payable {
+        // account index varies 0-9, value is in wei
+        Assert.equal(msg.sender, TestsAccounts.getAccount(1), "Invalid sender");
+        Assert.equal(msg.value, 100, "Invalid value");
+    }
 }
-
-
