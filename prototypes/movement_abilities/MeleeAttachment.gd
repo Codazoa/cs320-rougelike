@@ -3,7 +3,7 @@ extends Node2D
 onready var arm = $ClawArm
 
 export var color = Color(0.8, 0.3, 0.3)
-export var left = true
+export var left = false
 
 onready var rest_pos = $restPos
 onready var wind_pos = $windPos
@@ -65,6 +65,13 @@ func attack(delta):
 func calc_damage():
 	pass
 	
+	
+func _on_targetDetection_body_entered(body):
+	
+	if body.is_in_group("enemy"):
+		print("target in rage")
+		target_pos = body.global_position
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	

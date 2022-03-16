@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ClawArm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MeleeAttachment.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://Assets/dummy.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 35.5, 29.75 )
+
+[sub_resource type="GradientTexture" id=3]
 
 [node name="MeleeAttachment" type="Node2D"]
 script = ExtResource( 2 )
@@ -36,3 +41,21 @@ visible = false
 position = Vector2( -0.833333, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+
+[node name="targetDetection" type="Area2D" parent="."]
+visible = false
+position = Vector2( 10, -13 )
+scale = Vector2( 0.883, 1.275 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="targetDetection"]
+position = Vector2( 36.5, 16.25 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="targetDetection/CollisionShape2D"]
+position = Vector2( -0.5, -0.749998 )
+scale = Vector2( 0.0340576, 57 )
+texture = SubResource( 3 )
+
+[connection signal="body_entered" from="targetDetection" to="." method="_on_targetDetection_body_entered"]
