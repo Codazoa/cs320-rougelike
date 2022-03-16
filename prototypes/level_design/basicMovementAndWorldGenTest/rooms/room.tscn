@@ -4,8 +4,6 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="roomShifterBundle" type="Node" parent="."]
-
 [node name="wallBundle" type="Node" parent="."]
 
 [node name="wall" parent="wallBundle" instance=ExtResource( 1 )]
@@ -15,7 +13,13 @@ position = Vector2( 0, 80 )
 position = Vector2( 0, 112 )
 
 [node name="wall3" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 16, 112 )
+position = Vector2( 16, 128 )
+
+[node name="wall" parent="wallBundle/wall3" instance=ExtResource( 1 )]
+position = Vector2( -16, 0 )
+
+[node name="wall2" parent="wallBundle/wall3" instance=ExtResource( 1 )]
+position = Vector2( 112, 0 )
 
 [node name="Node2D8" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 80, 0 )
@@ -39,13 +43,13 @@ position = Vector2( 32, 0 )
 position = Vector2( 16, 0 )
 
 [node name="wall5" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 48, 112 )
+position = Vector2( 48, 128 )
 
 [node name="wall4" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 0, 96 )
 
 [node name="wall6" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 32, 112 )
+position = Vector2( 32, 128 )
 
 [node name="wall8" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 112, 0 )
@@ -66,13 +70,13 @@ position = Vector2( 128, 96 )
 position = Vector2( 128, 112 )
 
 [node name="wall14" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 80, 112 )
+position = Vector2( 80, 128 )
 
 [node name="wall17" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 96, 112 )
+position = Vector2( 96, 128 )
 
 [node name="wall18" parent="wallBundle" instance=ExtResource( 1 )]
-position = Vector2( 112, 112 )
+position = Vector2( 112, 128 )
 
 [node name="Node2D" parent="wallBundle" instance=ExtResource( 1 )]
 

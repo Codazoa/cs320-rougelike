@@ -6,6 +6,8 @@ export (PackedScene) var generalRoom;
 export (PackedScene) var spawnRoom;
 export (PackedScene) var bossRoom;
 
+class_name generateFloor
+
 var floorPlan = []; #Stores floor plan
 var floorPlanWidth; #Handles width of floor plan
 var floorPlanHeight; #Handles height of floor plan
