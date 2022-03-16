@@ -2,7 +2,19 @@
 extends Node2D
 var xShift = -1;
 var yShift = 0;
+
+var roomTileWidth = 9;
+var roomTileHeight = 9;
+
 export (PackedScene) var scene;
+
+func grabSpriteSize(target, desiredDimension):
+	var instanceSprite = target.get_node("SpriteTest");
+	if(desiredDimension):
+		return instanceSprite.texture.get_width()*instanceSprite.scale.x;
+	#Height
+	else:
+		return instanceSprite.texture.get_height()*instanceSprite.scale.y;
 
 """
 handleCollision() is a function where any checks that might occur before shifting a room take place.
@@ -18,7 +30,16 @@ shiftRoom() serves mainly as a method of testing coordinate manipulation. Each v
 has varying effects on objects in the room.
 """
 func shiftRoom(collider):
+	#get_tree().get_root().get_node("Node2D").get_node("roomLayout").get_node("map").queue_free();
+	#get_tree().get_root().get_node("masterNode").find_node("map").queue_free();
+	
+	#Delete previous room
+	var roomLayoutNode = get_tree().get_root().get_node("masterNode").find_node("roomLayout")
+	roomLayoutNode.get_child(0).queue_free();
+	
+	#Spawn next room
 	var roomScene = scene.instance();
-	collider.position.x = self.position.x+4*xShift;
-	collider.position.y = self.position.y+4*yShift;
-	add_child(roomScene);
+	roomLayoutNode.add_child(roomScene);
+	
+	collider.global_position.x = self.global_position.x+(grabSpriteSize(self, true)*(roomTileWidth-2));
+	collider.global_position.y = self.global_position.y;
