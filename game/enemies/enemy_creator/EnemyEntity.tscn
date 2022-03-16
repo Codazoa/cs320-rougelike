@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://EnemyEntity.gd" type="Script" id=1]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 212.229
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 44.1022
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 21.25, 10.25 )
+
+[node name="EnemyEntity" type="Node"]
+script = ExtResource( 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+
+[node name="Hitbox" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="VisionRange" type="Area2D" parent="KinematicBody2D"]
+
+[node name="VisionShape" type="CollisionShape2D" parent="KinematicBody2D/VisionRange"]
+shape = SubResource( 2 )
+
+[node name="AggroRange" type="Area2D" parent="KinematicBody2D"]
+
+[node name="AggroShape" type="CollisionShape2D" parent="KinematicBody2D/AggroRange"]
+shape = SubResource( 3 )
+
+[node name="AttackPoint" type="Area2D" parent="KinematicBody2D"]
+
+[node name="AttackRange" type="CollisionShape2D" parent="KinematicBody2D/AttackPoint"]
+position = Vector2( 0, -20 )
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="KinematicBody2D/VisionRange" to="." method="_on_VisionRange_body_entered"]
+[connection signal="body_exited" from="KinematicBody2D/VisionRange" to="." method="_on_VisionRange_body_exited"]
+[connection signal="body_entered" from="KinematicBody2D/AggroRange" to="." method="_on_AggroRange_body_entered"]
+[connection signal="body_exited" from="KinematicBody2D/AggroRange" to="." method="_on_AggroRange_body_exited"]
