@@ -40,13 +40,13 @@ func _ready():
 		
 #currently follows mouse movement for testing
 func _process(delta):
-
+	#target.position
 	update_ik(target.position)
 
 #This function updates the angles of the joints depending on the position of the target
 #Adapted from a inverse kinematics tutorial on youtube.
 #meaning I followed a tutorial for another project and implemented it myself for this one
-#though there is probably alot of similarity
+#though there is probably alot of similiar
 
 func update_ik(target_pos):
 	#Offset gives the angle and distance between target and base

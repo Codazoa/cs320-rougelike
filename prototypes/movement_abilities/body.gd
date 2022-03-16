@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 var velocity = Vector2.ZERO
 
 onready var playerPos = get_node("../PlayerPos")
@@ -11,12 +10,11 @@ onready var tailTip = get_node("../tail2")
 export var color = Color(255,255,255)
 
 #Body segments follow their target
-
 func recolor():
 	body.get_node("Sprite").modulate = color
 	tailBase.get_node("Sprite").modulate = color
 	tailTip.get_node("Sprite").modulate = color
-	
+
 func followSeg(curSeg: KinematicBody2D, target:KinematicBody2D, dist: int, delta):
 	curSeg.look_at(target.position)
 	if curSeg.position.distance_to(target.position) > dist:
