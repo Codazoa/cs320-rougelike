@@ -71,9 +71,9 @@ contract playerMintContract is ERC721, Ownable {
                     // Look for a matching player ID
                     if (e.empid==empid) {
                         return (e.name,
-                            e.playDate,
-                            e.connectedParts,
-                            e.numberOfDeaths);
+                                e.playDate,
+                                e.connectedParts,
+                                e.numberOfDeaths);
                     }
             }
             // If the player ID doesn't exist, state so.
@@ -93,6 +93,7 @@ contract playerMintContract is ERC721, Ownable {
 
     // Runs when minted
     function mint() external payable {
+        // Unit tests for user, exception is thrown
         require(isMintEnabled, 'You cannot mint token'); // "If isMintEnabled is False, print error message"
         require(mintedWallets[msg.sender] < 1, 'Exceeds the max supply'); // Each wallet can only mint one token
         require(msg.value == mintPrice, 'Wrong price'); // Check value of transaction, (0.01)
@@ -100,7 +101,7 @@ contract playerMintContract is ERC721, Ownable {
         
         // Check if the name is empty
         bytes memory tempString = bytes(playerName);
-                if (tempString.length == 0) {
+          if (tempString.length == 0) {
             // String is empty
             isPlayerNameEmpty = isPlayerNameEmpty;
         } else {
@@ -113,6 +114,9 @@ contract playerMintContract is ERC721, Ownable {
         uint256 tokenId = totalSupply;
         _safeMint(msg.sender, tokenId); // Distributes NFT correctly
     }
+
+    //Unit testing
+
     // Before all, black-box testing
     // Make payable to check for the msg and sender..
     function beforeAll() public {
@@ -126,9 +130,16 @@ contract playerMintContract is ERC721, Ownable {
 
     }
 
+    // When a new contract is minted, test that when we branch to a new contract the supply also increases.
+    function testMintBranching() public {
+        Assert.equal(totalSupply, totalSupply++, "Supply should increase when minted");
+    }
+
+    // Test the success of the mint
     function checkSuccess() public{
         // Use 'Assert' methods
         Assert.ok(totalSupply == 1, "should be true"); // After minting, the supply should be 1 of 1.
+        Assert.ok(isPlayerNameEmpty == isPlayerNameEmpty, "should be true");
     }
 
 
