@@ -35,12 +35,16 @@ func shiftRoom(collider):
 	#get_tree().get_root().get_node("masterNode").find_node("map").queue_free();
 	
 	#Delete previous room
-	var roomLayoutNode = get_tree().get_root().get_node("masterNode").find_node("roomLayout")
+	var roomLayoutNode = get_tree().get_root().get_node("masterNode").find_node("roomLayout");
 	roomLayoutNode.get_child(0).queue_free();
 	
 	#Spawn next room
-	var roomScene = scene.instance();
+	var roomScene = pickRoom(0).instance();
 	roomLayoutNode.add_child(roomScene);
 	
 	collider.global_position.x = self.global_position.x;
 	collider.global_position.y = self.global_position.y-(grabSpriteSize(self, false)*(roomTileHeight-2));
+
+func pickRoom(roomType):
+	var roomDatabase = get_tree().get_root().get_node("masterNode").find_node("roomDatabase");
+	return roomDatabase.pickRoom(roomType);
