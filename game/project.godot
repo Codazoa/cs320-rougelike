@@ -25,6 +25,10 @@ window/size/height=180
 window/size/test_width=1280
 window/size/test_height=720
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
