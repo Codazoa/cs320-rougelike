@@ -17,9 +17,10 @@ onready var target = $target
 
 #sets up the sprites of the arm depending on whether it is attached right or left.
 func recolor(color):
-	$CrabArmBi.modulate = color
-	elbow.get_node("CrabArmClawA").modulate = color
-	wrist.get_node("CrabArmClawB").modulate = color
+	modulate = color
+#	$CrabArmBi.modulate = color
+#	elbow.get_node("CrabArmClawA").modulate = color
+#	wrist.get_node("CrabArmClawB").modulate = color
 
 #refactors certain specificat
 func make_right():

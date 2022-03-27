@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_bi.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_clawA.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_clawB.png" type="Texture" id=3]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_bi.png" type="Texture" id=1]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_clawA.png" type="Texture" id=2]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_clawB.png" type="Texture" id=3]
 [ext_resource path="res://ClawOBS.gd" type="Script" id=4]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]

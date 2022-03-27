@@ -3,8 +3,8 @@ extends Node2D
 onready var healthbar = $HealthBar
 
 export var full_color = Color(1,1,1)
-export var half_color = Color(1,1,1)
-export var low_color = Color(1,1,1)
+export var half_color = Color(.5,.5,.5)
+export var low_color = Color(.25,.25,.25)
 
 export var size = 1
 
@@ -24,6 +24,10 @@ func _ready():
 
 #Updates the healthbar visual
 func update_health(health):
+	if health < 0 or health > max_value:
+		print("invalid health input")
+		return null
+		
 	var ratio = float(size)*(float(health) / float(max_value))
 	healthbar.scale.x = ratio
 	if ratio < 0.75:

@@ -1,13 +1,13 @@
 extends Node2D
 
 onready var area = $Area2D
-onready var healthbar = $HealthDisplay
+onready var healthbar = self.get_node("HealthDisplay")
 
 export var is_player = false
 
 var target = true
 export var max_health = 100
-var health = 100
+var health = max_health
 
 export var layer = 0
 

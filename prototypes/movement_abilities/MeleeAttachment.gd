@@ -97,8 +97,8 @@ func _physics_process(delta):
 
 #checks if position is in given range
 func in_range(pos1, pos2, prox):
-	var x_thresh = pos2.x - pos1.x
-	var y_thresh = pos2.y - pos1.y
+	var x_thresh = pos2.position.x - pos1.position.x
+	var y_thresh = pos2.position.y - pos1.position.y
 	print (x_thresh, y_thresh)
 	if abs(x_thresh) <= prox && abs(y_thresh) <= prox:
 		return true
