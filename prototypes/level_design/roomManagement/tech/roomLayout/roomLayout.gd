@@ -5,19 +5,24 @@ var roomDatabaseNode;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Node created: roomLayout");
-	spawnRoom(2, 0);
+	pass;
+	#print("Node created: roomLayout");
+	#spawnRoom(2, 0);
 	
-func spawnRoom(roomID, roomIndex):
+func spawnRoom(roomScene):
 	#get map node
 	#instance scene
-	var chosenRoom = roomDatabaseNode.grabRoom(roomID, roomIndex);
-	self.get_node("map").add_child(chosenRoom.instance());
+	#var chosenRoom = roomDatabaseNode.grabRoom(roomID, roomIndex);
+	var instanced = roomScene.instance();
+	self.get_node("map").add_child(instanced);
 	#do any needed set up
 	
 func deleteRoom():
-	pass;
+	var terminated = self.get_node("map").get_child(0);
+	#print(terminated);
+	if(terminated != null):
+		terminated.queue_free();
 	
-func shiftRoom(roomID, roomIndex):
+func shiftRoom(roomIndex):
 	deleteRoom();
-	spawnRoom(roomID, roomIndex);
+	spawnRoom(roomIndex);

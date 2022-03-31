@@ -5,27 +5,35 @@ var roomDatabaseNode;
 var roomLayoutNode;
 var roomShifterNodes = [];
 
+var currentLocationX = -1; #X location in floorplan for where player is
+var currentLocationY = -1; #Y location in floorplan for where player is
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("Node created: worldManager");
 	initialize();
 
 func initialize():
-	#Spawn floorplanGenerator
-	floorplanGeneratorNode = load("res://tech/floorplanHandling/floorplanGenerator/floorplanGenerator.tscn").instance();
-	floorplanGeneratorNode.worldManagerNode = self;
-	add_child(floorplanGeneratorNode);
-	
 	#Spawn roomDatabase
 	roomDatabaseNode = load("res://tech/roomDatabase/roomDatabase.tscn").instance();
 	roomDatabaseNode.worldManagerNode = self;
 	add_child(roomDatabaseNode);
 	
+	
+	#Spawn floorplanGenerator
+	floorplanGeneratorNode = load("res://tech/floorplanHandling/floorplanGenerator/floorplanGenerator.tscn").instance();
+	floorplanGeneratorNode.worldManagerNode = self;
+	add_child(floorplanGeneratorNode);
+	floorplanGeneratorNode.generateFloorPlan(15, 15, 30);
+	floorplanGeneratorNode.populateFloorPlan();
+	
 	#Spawn roomLayout
 	roomLayoutNode = load("res://tech/roomLayout/roomLayout.tscn").instance();
 	roomLayoutNode.worldManagerNode = self;
-	roomLayoutNode.roomDatabaseNode = roomDatabaseNode;
 	add_child(roomLayoutNode);
+	
+	var roomScene = self.floorplanGeneratorNode.floorPlan[self.currentLocationX][self.currentLocationY].getRoomScene();
+	roomLayoutNode.spawnRoom(roomScene);
 	
 	#Spawn roomShifter
 	for i in range(0, 4):

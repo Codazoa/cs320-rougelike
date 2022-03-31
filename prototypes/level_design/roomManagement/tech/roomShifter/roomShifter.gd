@@ -1,7 +1,5 @@
 #All of the following code was written by Sydney Burgess
 extends Node2D
-var xShift = 0;
-var yShift = 1;
 var shifterType; #0 == left, 1 == right, 2 == up, 3 == down
 
 var roomTileWidth = 9;
@@ -34,19 +32,6 @@ shiftRoom() serves mainly as a method of testing coordinate manipulation. Each v
 has varying effects on objects in the room.
 """
 func shiftRoom(collider):
-	#get_tree().get_root().get_node("Node2D").get_node("roomLayout").get_node("map").queue_free();
-	#get_tree().get_root().get_node("masterNode").find_node("map").queue_free();
-	
-	#Delete previous room
-	var roomLayoutNode = get_tree().get_root().get_node("mainNode").find_node("worldManager").roomLayoutNode;
-	print(roomLayoutNode)
-	var terminated = roomLayoutNode.get_node("map").get_child(0)
-	print(terminated);
-	terminated.queue_free();
-	
-	#Spawn next room
-	var roomScene = pickRoom(0).instance();
-	roomLayoutNode.get_node("map").add_child(roomScene);
 	
 	#Shift collider to correct position
 	match shifterType:
@@ -54,21 +39,46 @@ func shiftRoom(collider):
 		0:
 			collider.global_position.x = self.global_position.x+(grabSpriteSize(true)*(roomTileWidth-2));
 			collider.global_position.y = self.global_position.y;
+			
+			worldManagerNode.currentLocationX += -1;
+			worldManagerNode.currentLocationY += 0;
+			
+			print("Location: ("+str(worldManagerNode.currentLocationX)+", "+str(worldManagerNode.currentLocationY)+")");
 		
 		#Right
 		1:
 			collider.global_position.x = self.global_position.x-(grabSpriteSize(true)*(roomTileWidth-2));
 			collider.global_position.y = self.global_position.y;
+			
+			worldManagerNode.currentLocationX += 1;
+			worldManagerNode.currentLocationY += 0;
+			
+			print("Location: ("+str(worldManagerNode.currentLocationX)+", "+str(worldManagerNode.currentLocationY)+")");
 		
 		#Up
 		2:
 			collider.global_position.x = self.global_position.x;
 			collider.global_position.y = self.global_position.y+(grabSpriteSize(false)*(roomTileHeight-2));
+			
+			worldManagerNode.currentLocationX += 0;
+			worldManagerNode.currentLocationY += -1;
+			
+			print("Location: ("+str(worldManagerNode.currentLocationX)+", "+str(worldManagerNode.currentLocationY)+")");
 
 		#Down
 		3:
 			collider.global_position.x = self.global_position.x;
 			collider.global_position.y = self.global_position.y-(grabSpriteSize(false)*(roomTileHeight-2));
+			
+			
+			worldManagerNode.currentLocationX += 0;
+			worldManagerNode.currentLocationY += 1;
+			
+			print("Location: ("+str(worldManagerNode.currentLocationX)+", "+str(worldManagerNode.currentLocationY)+")");
+
+	#loadRoom();
+	var newScene = worldManagerNode.floorplanGeneratorNode.floorPlan[worldManagerNode.currentLocationX][worldManagerNode.currentLocationY].getRoomScene();
+	worldManagerNode.roomLayoutNode.shiftRoom(newScene);
 
 """
 pickRoom() takes an integer denoting roomType, and returns a random room scene for said type of room.

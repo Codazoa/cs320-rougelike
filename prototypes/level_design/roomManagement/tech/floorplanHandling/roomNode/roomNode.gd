@@ -4,6 +4,7 @@ extends Node
 class_name roomNode
 
 var roomID: int;
+var roomScene;
 var roomLayoutFileName;
 var roomCleared;
 var persistantItemData = []; #Intended to be used later, when storing items that were dropped on the ground
@@ -19,6 +20,12 @@ func getRoomID():
 func setRoomID(givenRoomID):
 	#print("Room set:"+str(roomID)); #Debug
 	self.roomID = givenRoomID;
+	
+func getRoomScene():
+		return self.roomScene;
+
+func setRoomScene(givenRoomScene):
+	self.roomScene = givenRoomScene;
 
 func storeItem(itemID, xPos, yPos):
 	persistantItemData.append(itemNode.new(itemID, xPos, yPos));

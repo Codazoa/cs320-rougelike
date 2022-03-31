@@ -263,11 +263,16 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 	var spawnRoomCoords = deadendCoords[chosenIndex]; #Records coordinates at index for later
 	deadendCoords.remove(chosenIndex); #Remove coordinates from list
 	floorPlan[spawnRoomCoords[0]][spawnRoomCoords[1]].setRoomID(2); #Place spawn room
+	worldManagerNode.currentLocationX = spawnRoomCoords[0];
+	worldManagerNode.currentLocationY = spawnRoomCoords[1];
+
+	print("Spawn Room: ("+str(spawnRoomCoords[0])+", "+str(spawnRoomCoords[1])+")");
 
 		#Place boss room
 	#Cycle through entire deadendCoords list
 	var bossRoomCoordsIndex = findFurthestDeadEnd(spawnRoomCoords, deadendCoords);
 	floorPlan[deadendCoords[bossRoomCoordsIndex][0]][deadendCoords[bossRoomCoordsIndex][1]].setRoomID(3);
+	print("Boss Room: ("+str(deadendCoords[bossRoomCoordsIndex][0])+", "+str(deadendCoords[bossRoomCoordsIndex][1])+")");
 
 """
 findFurthestDeadEnd() takes two parameters, the first is an integer array that denotes the coordinates of a room 
@@ -286,6 +291,21 @@ func findFurthestDeadEnd(givenCoordinates, givenDeadendCoords):
 		if(currentDist > furthestDist): 
 			furthestCoordsIndex = i;
 	return furthestCoordsIndex;
+
+
+"""
+Given a completed floor plan, goes through and populates floorplan's rooms with room indexes to use for room layouts
+"""
+func populateFloorPlan():
+	var desiredWidth = floorPlan.size();
+	var desiredHeight = floorPlan[0].size();
+	
+	#Iterate through array
+	for i in range(0, desiredWidth):
+		for j in range(0, desiredHeight):
+			var currentRoomID = floorPlan[i][j].getRoomID(); #Get roomID
+			var currentRoomScene = worldManagerNode.roomDatabaseNode.pickRoomIndex(currentRoomID);
+			floorPlan[i][j].setRoomScene(currentRoomScene); #Set roomScene to random room given roomID
 
 """
 DEBUG FUNCTION: Places tile according to room for help in building floor plan
@@ -315,14 +335,17 @@ func buildFloorPlan(event):
 			var new_instance = -1;
 			#Identify what room id is
 			if(floorPlan[i][j].getRoomID() == 1): 
-				placeObject(event, generalRoom.instance(), i, j);
+				#placeObject(event, generalRoom.instance(), i, j);
 				pass;
 			elif(floorPlan[i][j].getRoomID() == 2):
-				placeObject(event, spawnRoom.instance(), i, j);
+				#placeObject(event, spawnRoom.instance(), i, j);
+				pass;
 			elif(floorPlan[i][j].getRoomID() == 3):
-				placeObject(event, bossRoom.instance(), i, j);
+				#placeObject(event, bossRoom.instance(), i, j);
+				pass;
 			else:
-				placeObject(event, wall.instance(), i, j);
+				#placeObject(event, wall.instance(), i, j);
+				pass;
 """
 DEBUG FUNCTION: detectClick is a basic function that checks for a left click input. It returns a true/false boolean. It
 was intended for me to test out mouse inputs, as well as practicing function formatting in godot.
@@ -339,7 +362,8 @@ DEBUG FUNCTION: _input spawns a the floor plan, starting at the cursor position 
 func _input(event):
 	if (detectClick(event)):
 		generateFloorPlan(15, 15, 30);
-		buildFloorPlan(event);
+		populateFloorPlan();
+		#buildFloorPlan(event);
 
 
 func _ready():
