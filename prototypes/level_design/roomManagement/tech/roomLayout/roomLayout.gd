@@ -1,7 +1,6 @@
 extends Node
 
 var worldManagerNode;
-var roomDatabaseNode;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,13 +9,9 @@ func _ready():
 	#spawnRoom(2, 0);
 	
 func spawnRoom(roomScene):
-	#get map node
-	#instance scene
-	#var chosenRoom = roomDatabaseNode.grabRoom(roomID, roomIndex);
 	var instanced = roomScene.instance();
 	self.get_node("map").add_child(instanced);
-	#do any needed set up
-	
+
 func deleteRoom():
 	var terminated = self.get_node("map").get_child(0);
 	#print(terminated);
@@ -26,3 +21,16 @@ func deleteRoom():
 func shiftRoom(roomIndex):
 	deleteRoom();
 	spawnRoom(roomIndex);
+
+
+func boundryLegalCheck(givenX, givenY):
+	var floorplan = worldManagerNode.floorplanGeneratorNode.floorPlan;
+	
+	#Ensure in bounds on x plane
+	if( (givenX < 0) or (givenX >= floorplan.size()) ):
+		return false;
+
+	#Ensure in bounds on y plane
+	if( (givenY < 0) or (givenY >= floorplan[0].size()) ):
+		return false;
+	return true;
