@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://crabArmIk.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_clawA.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_clawB.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Slug/Crab Arm/crab_arm_bi.png" type="Texture" id=4]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_clawA.png" type="Texture" id=2]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_clawB.png" type="Texture" id=3]
+[ext_resource path="res://assets/Slug/Crab Arm/crab_arm_bi.png" type="Texture" id=4]
 
 [node name="base" type="Position2D"]
 script = ExtResource( 1 )
