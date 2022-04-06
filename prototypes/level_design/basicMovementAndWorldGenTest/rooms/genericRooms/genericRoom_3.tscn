@@ -88,3 +88,30 @@ position = Vector2( 128, 80 )
 
 [node name="wall12" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 128, 48 )
+
+[node name="wall3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 80 )
+
+[node name="wall4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 64 )
+
+[node name="wall5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 48 )
+
+[node name="wall6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 48, 64 )
+
+[node name="wall" parent="wall6" instance=ExtResource( 1 )]
+position = Vector2( 32, 0 )
+
+[node name="wall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 96 )
+
+[node name="wall2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 32, 32 )
+
+[node name="wall7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 96, 32 )
+
+[node name="wall" parent="wall7" instance=ExtResource( 1 )]
+position = Vector2( 0, 64 )

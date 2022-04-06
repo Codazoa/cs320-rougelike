@@ -8,8 +8,27 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "generateFloor",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/floorplanGenerator/floorplanGenerator.gd"
+}, {
+"base": "Node",
+"class": "itemNode",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/itemNode/itemNode.gd"
+}, {
+"base": "Node",
+"class": "roomNode",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/roomNode/roomNode.gd"
+} ]
 _global_script_class_icons={
+
+"generateFloor": "",
+"itemNode": "",
+"roomNode": ""
 }
 
 [application]
@@ -58,6 +77,7 @@ window/size/test_height=720
 
 [editor_plugins]
 
+enabled=PoolStringArray(  )
 enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [rendering]
