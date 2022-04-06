@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://misc/peeper/peeper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://terrain/wall/wallGen/wallGen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://roomShifters/roomShifter_up.tscn" type="PackedScene" id=3]
+[ext_resource path="res://roomShifters/roomShifter_right.tscn" type="PackedScene" id=4]
+[ext_resource path="res://roomShifters/roomShifter_left.tscn" type="PackedScene" id=5]
+[ext_resource path="res://roomShifters/roomShifter_down.tscn" type="PackedScene" id=6]
+[ext_resource path="res://rooms/room.tscn" type="PackedScene" id=7]
+
+[node name="masterNode" type="Node2D"]
+
+[node name="playerTest" parent="." instance=ExtResource( 1 )]
+position = Vector2( 72, 88 )
+
+[node name="worldManager" type="Node" parent="."]
+
+[node name="roomLayout" type="Node" parent="worldManager"]
+
+[node name="map" parent="worldManager/roomLayout" instance=ExtResource( 7 )]
+
+[node name="roomShifters" type="Node" parent="worldManager/roomLayout"]
+
+[node name="roomShifter_up" parent="worldManager/roomLayout/roomShifters" instance=ExtResource( 3 )]
+position = Vector2( 64, 0 )
+
+[node name="roomShifter_down" parent="worldManager/roomLayout/roomShifters" instance=ExtResource( 6 )]
+position = Vector2( 64, 128 )
+
+[node name="roomShifter_right" parent="worldManager/roomLayout/roomShifters" instance=ExtResource( 4 )]
+position = Vector2( 128, 64 )
+
+[node name="roomShifter_left" parent="worldManager/roomLayout/roomShifters" instance=ExtResource( 5 )]
+position = Vector2( 0, 64 )
+
+[node name="wallGen" parent="worldManager" instance=ExtResource( 2 )]

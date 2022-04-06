@@ -10,10 +10,8 @@ Has the following functions currently:
             - Updating Enemy Animations
             - Pause Enemy Movement outside of Agro Range
 
-Needs implementation/correction:
-    Create:
-        Enemy Attacking Demo
-        
-        Advanced Animation Demo
-        
-        Advanced Enemy Mechanic Demo
+    HUD Overlay Demo: Third Demo, praciticing implementing a HUD 
+        Implemented:
+            - A HUD overlay bounding the Player within a specific area
+            - Basic Player Controls
+            - Incorporating and interacting with multiple scenes at once

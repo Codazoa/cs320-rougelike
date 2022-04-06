@@ -8,10 +8,32 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "generateFloor",
+"language": "GDScript",
+"path": "res://floorplanHandling/generateFloor.gd"
+}, {
+"base": "Node",
+"class": "itemNode",
+"language": "GDScript",
+"path": "res://floorplanHandling/itemNode.gd"
+}, {
+"base": "Node",
+"class": "roomNode",
+"language": "GDScript",
+"path": "res://floorplanHandling/roomNode.gd"
+} ]
+_global_script_class_icons={
+"generateFloor": "",
+"itemNode": "",
+"roomNode": ""
+}
+
 [application]
 
 config/name="basicMovementAndWorldGenTest"
-run/main_scene="res://stage.tscn"
+run/main_scene="res://rooms/stage.tscn"
 
 [display]
 
