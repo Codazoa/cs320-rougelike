@@ -1,12 +1,19 @@
 extends Node
 
 var worldManagerNode;
+var roomShiftTimer = -1;
+var roomShiftTime = 10;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass;
 	#print("Node created: roomLayout");
 	#spawnRoom(2, 0);
+
+func _process(delta):
+	if(roomShiftTimer != -1):
+		roomShiftTimer -= 1;
+		#if(roomShiftTimer < -1): roomShiftTimer = -1;
 	
 func spawnRoom(roomScene):
 	var instanced = roomScene.instance();
@@ -21,7 +28,7 @@ func deleteRoom():
 func shiftRoom(roomIndex):
 	deleteRoom();
 	spawnRoom(roomIndex);
-
+	roomShiftTimer = roomShiftTime;
 
 func boundryLegalCheck(givenX, givenY):
 	var floorplan = worldManagerNode.floorplanGeneratorNode.floorPlan;
@@ -34,3 +41,4 @@ func boundryLegalCheck(givenX, givenY):
 	if( (givenY < 0) or (givenY >= floorplan[0].size()) ):
 		return false;
 	return true;
+

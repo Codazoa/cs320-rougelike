@@ -23,6 +23,7 @@ handleCollision() is a function where any checks that might occur before shiftin
 For example, if the player is not allowed to leave the room yet, said check could be placed here.
 """
 func handleCollision(collider):
+	var shiftTimerCheck = (worldManagerNode.roomLayoutNode.roomShiftTimer == -1);
 	#Check if at boundries
 	var boundryLegalCheck;
 	match shifterType:
@@ -39,7 +40,7 @@ func handleCollision(collider):
 		3:
 			boundryLegalCheck = worldManagerNode.roomLayoutNode.boundryLegalCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY+1);
 
-	if(boundryLegalCheck): #Hypothetical case where I could check for if player is allowed to leave the room yet
+	if(boundryLegalCheck && shiftTimerCheck): #Hypothetical case where I could check for if player is allowed to leave the room yet
 		shiftRoom(collider);
 
 """
