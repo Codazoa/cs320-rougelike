@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://Bonus 03.png" type="Texture" id=2]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="CentralLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CentralLayer"]
+margin_right = 1440.0
+margin_bottom = 810.0
+color = Color( 0.145098, 0.145098, 0.152941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CentralLayer"]
+margin_left = 608.0
+margin_top = 256.0
+margin_right = 800.0
+margin_bottom = 384.0
+text = "Start Game"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CentralLayer"]
+margin_left = 656.0
+margin_top = 384.0
+margin_right = 751.0
+margin_bottom = 445.0
+icon = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CentralLayer/Button" to="." method="_on_Button_pressed"]
