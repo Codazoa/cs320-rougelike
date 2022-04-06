@@ -3,9 +3,9 @@
 [ext_resource path="res://assets/Slug/Gun Arm/gun_arm_cannonB.png" type="Texture" id=1]
 [ext_resource path="res://assets/Slug/Gun Arm/gun_arm_bi.png" type="Texture" id=2]
 [ext_resource path="res://assets/Slug/Gun Arm/gun_arm_cannonA.png" type="Texture" id=3]
-[ext_resource path="res://GunArm.gd" type="Script" id=4]
+[ext_resource path="res://scripts/player_scripts/GunArm.gd" type="Script" id=4]
 [ext_resource path="res://assets/Slug/Gun Arm/gun_projectile.png" type="Texture" id=5]
-[ext_resource path="res://SlimeBall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/player/SlimeBall.tscn" type="PackedScene" id=6]
 
 [node name="GunAttachment" type="Node2D"]
 rotation = -1.5708
