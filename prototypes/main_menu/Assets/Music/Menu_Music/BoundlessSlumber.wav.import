@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BoundlessSlumber.wav-78f097c0b874fd35d93e22933b6dbcb9.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/BoundlessSlumber.wav"
+dest_files=[ "res://.import/BoundlessSlumber.wav-78f097c0b874fd35d93e22933b6dbcb9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
