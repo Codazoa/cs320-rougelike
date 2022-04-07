@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PalmTreeShade.wav-dc07eb4fee95751a9f652dfb2981d345.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/PalmTreeShade.wav"
+dest_files=[ "res://.import/PalmTreeShade.wav-dc07eb4fee95751a9f652dfb2981d345.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
