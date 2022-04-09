@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://CreaturePart.gd" type="Script" id=1]
+[ext_resource path="res://Assets/kenney_monsterbuilderpack/kenney_monsterbuilderpack/PNG/Default/eye_human.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "basic_eyeball"
+texture = ExtResource( 2 )
+type = 2

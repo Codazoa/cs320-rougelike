@@ -10,9 +10,7 @@ var currently_holding_part = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# TO-DO: I think this needs to instead happen in main where both nodes will be instanced
-	draggable_part.connect("part_dropped", self, "_on_part_dropped")
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -27,7 +25,11 @@ func _gui_input(event):
 				grabbed_part.part_name = part_name
 				grabbed_part.get_node("Sprite").texture = self.texture
 				grabbed_part.position = get_global_mouse_position()
-				get_tree().get_root().add_child(grabbed_part)
+				get_tree().get_root().get_node("Main").add_child(grabbed_part)
+				var path_to_part = get_tree().get_root().get_node("Main").get_node("DraggablePart")
+				path_to_part.connect("part_dropped", self, "_on_part_dropped")
+				var player = get_tree().get_root().get_node("Main").get_node("Player")
+				path_to_part.connect("add_part_player", player, "on_part_received")
 				currently_holding_part = true
 
 func _on_part_dropped():

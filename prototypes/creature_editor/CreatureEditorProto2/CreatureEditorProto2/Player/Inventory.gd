@@ -21,7 +21,7 @@ func _ready():
 
 func _on_part_pickup(creature_part):
 	var specific_inventory
-	
+		
 	match creature_part.type:
 		CreaturePart.PartType.COSMETIC:
 			specific_inventory = cosmetic_inventory
@@ -37,13 +37,10 @@ func _on_part_pickup(creature_part):
 			specific_inventory = limb_inventory
 	
 	# Check if creature_part already present
-	if len(specific_inventory) == 0:
-		specific_inventory.append(creature_part)
-		emit_signal("inventory_changed")
-		return
-	for part in specific_inventory:
-		if creature_part == part:
-			return
+	if len(specific_inventory) != 0:
+		for part in specific_inventory:
+			if creature_part == part:
+				return
 	
 	specific_inventory.append(creature_part)
 	emit_signal("inventory_changed")

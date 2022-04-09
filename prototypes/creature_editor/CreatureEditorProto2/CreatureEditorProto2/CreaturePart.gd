@@ -9,3 +9,6 @@ export (PartType) var type
 
 # func type_handler
 	# adds corresponding features based on type
+
+# Notes on creature parts:
+#	- Maybe each creature part should also come with a basic description for displaying in stats table

@@ -3,7 +3,6 @@ extends Control
 
 # This is the root for the Creature Editor GUI
 
-
 signal quit_editor(creature_name, creature_parts)
 
 # Dict containing the parts added to the creature and their corresponding slot or coord
@@ -17,6 +16,7 @@ func _ready():
 	# Connect to the save and the cancel signals from the FinalizeContainer
 	$ScreenDivide2/FinalizeContainer.connect("creature_saved", self, "_on_creature_saved")
 	$ScreenDivide2/FinalizeContainer.connect("creature_canceled", self, "_on_creature_canceled")
+	
 
 
 #func _process(delta):

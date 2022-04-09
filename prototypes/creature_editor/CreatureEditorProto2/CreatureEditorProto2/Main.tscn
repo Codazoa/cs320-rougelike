@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/MapBorder.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Main.gd" type="Script" id=5]
 
@@ -13,10 +14,7 @@ position = Vector2( 601, 279 )
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 293, 209 )
 
-[node name="MapBorder" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapBorder"]
-polygon = PoolVector2Array( 490, -1, 1023, 1, 1024, 599, 0, 601, 0, -4, 484, -5, 483, -53, -66, -50, -69, 615, -71, 651, 1080, 643, 1078, -41, 494, -53 )
+[node name="MapBorder" parent="." instance=ExtResource( 2 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 511, 301 )

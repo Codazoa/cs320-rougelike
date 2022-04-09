@@ -9,9 +9,11 @@ Has the following functions currently:
     * Can be opened and closed
     * Centers and zooms in on player 
     * Instances "DraggablePart" item when a part is selected in editor
+- drag and drop items to player body
+- Cosmetic attachment of parts to player (a little wonky currently)
 
 
 Needs implementation/correction:
-
-- drag and drop items to player body
-- body editing system (detection of drag and drop parts)
+- Functional parts points of attachment
+- Stats window info
+- saving creature saves

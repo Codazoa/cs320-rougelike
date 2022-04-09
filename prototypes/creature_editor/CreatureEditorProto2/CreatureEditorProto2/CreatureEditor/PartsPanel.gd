@@ -5,6 +5,14 @@ var select_rect = preload("res://CreatureEditor/SelectPart.tscn")
 
 
 func _ready():
+	check_grids()
+
+
+#func _process(delta):
+#	pass
+
+
+func check_grids():
 	# Instance parts section grids, only if parts type found
 	if Inventory.get_player_inventory("Cosmetic").empty() == false:
 		_add_grid_child("Cosmetic")
@@ -18,10 +26,6 @@ func _ready():
 		_add_grid_child("Body")
 	if Inventory.get_player_inventory("Limb").empty() == false:
 		_add_grid_child("Limb")
-
-
-#func _process(delta):
-#	pass
 
 
 func _add_grid_child(type):
@@ -39,7 +43,7 @@ func _add_grid_child(type):
 			grid_to_fill = $TabContainer/Functional/ScrollContainer2/BodyGrid
 		"Limb":
 			grid_to_fill = $TabContainer/Functional/ScrollContainer3/LimbGrid
-			
+	
 	for part in Inventory.get_player_inventory(type):
 		# Display the sprite of each part in each grid slot
 		var part_rect = select_rect.instance()

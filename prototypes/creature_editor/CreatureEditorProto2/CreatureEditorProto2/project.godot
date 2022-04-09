@@ -35,6 +35,10 @@ config/icon="res://icon.png"
 PartDatabase="*res://Managers/PartDatabase.gd"
 Inventory="*res://Player/Inventory.gd"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
+
 [input]
 
 move_up={
