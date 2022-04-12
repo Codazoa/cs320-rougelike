@@ -7,7 +7,7 @@ const FRICTION  = 400
 const ROT_SPEED  = 1
 
 var velocity = Vector2.ZERO
-
+onready var playerChar = get_node("..")
 onready var spr_body = $body
 onready var spr_head = $head/head
 onready var spr_tail1 = $Tail1/tail1
@@ -26,9 +26,11 @@ func _physics_process(delta):
 	if input_vector != Vector2.ZERO:
 		velocity += input_vector * ACCELERATION * delta 
 		velocity = velocity.clamped(MAX_SPEED * delta)
-		rotation = input_vector.angle()
+#		rotation = input_vector.angle()
 	
 	else:
+		
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
-	move_and_collide(velocity)
+		
+	if !playerChar.in_static:
+		move_and_collide(velocity)
