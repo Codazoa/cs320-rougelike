@@ -1,6 +1,6 @@
 extends Node
 
-var Slime = preload("res://enemyScenes/Slime/the_Slime.tscn")
+var Slime = preload("res://scenes/enemies/the_Slime.tscn")
 
 
 func spawnTheEnemy(specificEnemy, positionX, positionY):
