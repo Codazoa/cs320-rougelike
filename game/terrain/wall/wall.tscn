@@ -2,7 +2,6 @@
 
 [ext_resource path="res://assets/roomIcons/spr_userInterface_invIcon_0.png" type="Texture" id=1]
 
-
 [node name="wall" type="Node2D"]
 __meta__ = {
 "_edit_group_": true

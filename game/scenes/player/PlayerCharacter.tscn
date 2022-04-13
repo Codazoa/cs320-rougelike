@@ -85,8 +85,3 @@ left = true
 scale = Vector2( 2.4, 2.4 )
 z_index = 15
 shape = SubResource( 1 )
-
-[node name="HeadCol2" type="CollisionShape2D" parent="PlayerPos"]
-scale = Vector2( 2.4, 2.4 )
-z_index = 15
-shape = SubResource( 1 )
