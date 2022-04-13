@@ -7,7 +7,7 @@ const FRICTION  = 500
 const ROT_SPEED  = 1
 
 var velocity = Vector2.ZERO
-
+onready var playerChar = get_node("..")
 onready var spr_body = $body
 onready var spr_head = $head/head
 onready var spr_tail1 = $Tail1/tail1
@@ -22,6 +22,7 @@ func _physics_process(delta):
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector =  input_vector.normalized()
+	
 #
 #	if input_vector != Vector2.ZERO:
 #		velocity += input_vector * ACCELERATION * delta 
