@@ -1,102 +1,155 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scripts/enemies/Slime.gd" type="Script" id=1]
+[ext_resource path="res://assets/EnemyAssets/Slime/slime1_left_side.png" type="Texture" id=2]
+[ext_resource path="res://assets/EnemyAssets/Slime/slime_explode.png" type="Texture" id=3]
+[ext_resource path="res://assets/EnemyAssets/Slime/slime1_right_side.png" type="Texture" id=4]
+[ext_resource path="res://assets/EnemyAssets/Slime/slime1_back.png" type="Texture" id=5]
+[ext_resource path="res://assets/EnemyAssets/Slime/slime1_front.png" type="Texture" id=6]
 
-[sub_resource type="AtlasTexture" id=34]
+[sub_resource type="AtlasTexture" id=55]
+flags = 4
+atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=35]
+[sub_resource type="AtlasTexture" id=56]
+flags = 4
+atlas = ExtResource( 4 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=36]
+[sub_resource type="AtlasTexture" id=57]
+flags = 4
+atlas = ExtResource( 4 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=37]
+[sub_resource type="AtlasTexture" id=58]
+flags = 4
+atlas = ExtResource( 4 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=59]
+flags = 4
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=60]
+flags = 4
+atlas = ExtResource( 2 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=32]
+[sub_resource type="AtlasTexture" id=61]
+flags = 4
+atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=62]
+flags = 4
+atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=38]
+[sub_resource type="AtlasTexture" id=63]
+flags = 4
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=39]
+[sub_resource type="AtlasTexture" id=64]
+flags = 4
+atlas = ExtResource( 5 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=40]
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 5 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=41]
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 5 )
 region = Rect2( 48, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=46]
-region = Rect2( 0, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=47]
-region = Rect2( 37, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 37, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=48]
-region = Rect2( 74, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 74, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=49]
-region = Rect2( 111, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=70]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 111, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=50]
-region = Rect2( 148, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 148, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=51]
-region = Rect2( 185, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 185, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=52]
-region = Rect2( 222, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 222, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=53]
-region = Rect2( 259, 0, 37, 32 )
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 259, 0, 37, 41 )
 
-[sub_resource type="AtlasTexture" id=42]
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=43]
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 6 )
 region = Rect2( 16, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=44]
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 6 )
 region = Rect2( 32, 0, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=45]
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
-"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
+"frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
 "loop": true,
 "name": "right",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
 "loop": true,
 "name": "left",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"frames": [ SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
 "loop": true,
 "name": "up",
 "speed": 8.0
 }, {
-"frames": [ SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
 "loop": true,
 "name": "explode",
 "speed": 14.0
 }, {
-"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"frames": [ SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ) ],
 "loop": true,
 "name": "down",
 "speed": 8.0
@@ -121,7 +174,6 @@ script = ExtResource( 1 )
 position = Vector2( 0, -8 )
 frames = SubResource( 54 )
 animation = "left"
-frame = 1
 playing = true
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
