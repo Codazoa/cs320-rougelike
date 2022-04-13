@@ -7,6 +7,7 @@
 [node name="World" type="Node2D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
+z_index = -1
 
 [node name="KinematicBody2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 669, 329 )

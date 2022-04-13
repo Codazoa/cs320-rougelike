@@ -13,8 +13,17 @@ onready var spr_head = $head/head
 onready var spr_tail1 = $Tail1/tail1
 onready var spr_tail2 = $Tail1/Tail2/tail2
 
+onready var body =  get_node("../body")
+onready var tailBase = get_node("../tail1")
+onready var tailTip = get_node("../tail2")
+
 export (NodePath) var head
 
+func rebuild_body():
+	body.position = Vector2(position.x, position.y - 40) 
+	tailBase.position = Vector2(position.x, position.y - 65)
+	tailTip.position = Vector2(position.x, position.y - 80)  
+	
 #player character moves based on WASD input
 #based on tutorial code i used when first learning godot
 func _physics_process(delta):

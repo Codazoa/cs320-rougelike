@@ -92,6 +92,8 @@ func shiftRoom(collider):
 			
 			print("Location: ("+str(worldManagerNode.currentLocationX)+", "+str(worldManagerNode.currentLocationY)+")");
 
+	collider.rebuild_body()
+	
 	var newScene = worldManagerNode.floorplanGeneratorNode.floorPlan[worldManagerNode.currentLocationX][worldManagerNode.currentLocationY].getRoomScene();
 	worldManagerNode.roomLayoutNode.shiftRoom(newScene);
 

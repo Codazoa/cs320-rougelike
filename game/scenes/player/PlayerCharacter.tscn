@@ -26,7 +26,6 @@ z_index = 1
 position = Vector2( 1.22826, -0.174042 )
 rotation = 1.5708
 scale = Vector2( 1.08634, 0.829191 )
-z_index = 2
 texture = ExtResource( 2 )
 
 [node name="tail1" type="KinematicBody2D" parent="."]
@@ -37,7 +36,7 @@ rotation = 1.5708
 position = Vector2( 6.05264, 0 )
 rotation = 1.5708
 scale = Vector2( 0.95, 1 )
-z_index = 1
+z_index = -1
 texture = ExtResource( 1 )
 
 [node name="body" type="KinematicBody2D" parent="."]
@@ -52,6 +51,7 @@ script = ExtResource( 6 )
 position = Vector2( 18, -0.600477 )
 rotation = 1.5708
 scale = Vector2( 0.839758, 1 )
+z_index = -2
 texture = ExtResource( 8 )
 
 [node name="PlayerPos" type="KinematicBody2D" parent="."]
@@ -72,16 +72,16 @@ texture = ExtResource( 7 )
 
 [node name="rightArmSlot" type="Position2D" parent="PlayerPos/Head"]
 position = Vector2( -7, 21 )
-z_index = 3
+z_index = 5
 
 [node name="GunAttachment" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 9 )]
 left = false
 
 [node name="leftArmSlot" type="Position2D" parent="PlayerPos/Head"]
 position = Vector2( -7, -22 )
-z_index = 3
+z_index = 5
 
-[node name="MeleeAttachment" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 10 )]
+[node name="MeleeAttachment2" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 10 )]
 left = true
 
 [node name="HeadCol" type="CollisionShape2D" parent="PlayerPos"]
