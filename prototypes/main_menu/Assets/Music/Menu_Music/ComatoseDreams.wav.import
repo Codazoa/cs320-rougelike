@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ComatoseDreams.wav-fd761ff5520fa3b3cd5ce777b48e5929.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/ComatoseDreams.wav"
+dest_files=[ "res://.import/ComatoseDreams.wav-fd761ff5520fa3b3cd5ce777b48e5929.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
