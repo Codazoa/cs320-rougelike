@@ -8,7 +8,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2( 8, 8 )
+position = Vector2( 64, 64 )
+scale = Vector2( 8, 8 )
 __meta__ = {
 "_edit_group_": true
 }

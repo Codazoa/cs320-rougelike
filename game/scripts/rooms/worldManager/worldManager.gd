@@ -33,7 +33,7 @@ func initialize():
 	add_child(roomLayoutNode);
 	
 	var roomScene = self.floorplanGeneratorNode.floorPlan[self.currentLocationX][self.currentLocationY].getRoomScene();
-	#roomLayoutNode.spawnRoom(roomScene);
+	roomLayoutNode.spawnRoom(roomScene);
 	
 	#Spawn roomShifter
 	for i in range(0, 4):
