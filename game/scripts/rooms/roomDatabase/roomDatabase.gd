@@ -41,7 +41,7 @@ loadSpawnRooms() loads all spawn rooms located under a specific folder.
 """
 func loadSpawnRooms():
 	print("Loading spawn rooms");
-	var totalRooms = 2; #I don't like having a variable that dictates how many rooms to load but I don't know how to grab the count of files in the directory
+	var totalRooms = 1; #I don't like having a variable that dictates how many rooms to load but I don't know how to grab the count of files in the directory
 	for i in range(0, totalRooms):
 		spawnRooms.append(load("res://scenes/rooms/spawnRooms/spawnRoom_"+str(i)+".tscn"));
 	print("Finishing loading spawn rooms.");

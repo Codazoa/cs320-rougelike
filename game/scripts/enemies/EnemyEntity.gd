@@ -61,7 +61,7 @@ func _ready():
 	directionX = 0
 	directionY = 0
 	visible = true
-	position = Vector2(0,0)
+
 	
 
 func _physics_process(_delta):
@@ -193,8 +193,9 @@ func enemyDeath():
 	hide()
 	isVisible = false
 	emit_signal("health_gone")
-	mySprite.set_frame(0)
-	mySprite.stop()
+	queue_free()
+#	mySprite.set_frame(0)
+#	mySprite.stop()
 
 #################################################################
 

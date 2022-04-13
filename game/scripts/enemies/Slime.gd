@@ -102,4 +102,4 @@ func _on_VisionRange_body_exited(body):
 	
 func _on_AnimatedSprite_animation_finished():
 	if mySprite.get_animation() == "explode":
-		hide()
+		enemyDeath()
