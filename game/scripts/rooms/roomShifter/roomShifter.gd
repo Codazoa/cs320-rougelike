@@ -2,7 +2,7 @@
 extends Node2D
 var shifterType; #0 == left, 1 == right, 2 == up, 3 == down
 
-var roomTileWidth = 9;
+var roomTileWidth = 17;
 var roomTileHeight = 9;
 
 var worldManagerNode;
@@ -12,10 +12,10 @@ export (PackedScene) var scene;
 func grabSpriteSize(desiredDimension):
 	var instanceSprite = self.get_node("SpriteTest");
 	if(desiredDimension):
-		return instanceSprite.texture.get_width()*instanceSprite.scale.x;
+		return 8*instanceSprite.texture.get_width()*instanceSprite.scale.x;
 	#Height
 	else:
-		return instanceSprite.texture.get_height()*instanceSprite.scale.y;
+		return 8*instanceSprite.texture.get_height()*instanceSprite.scale.y;
 
 
 """

@@ -51,15 +51,15 @@ func initialize():
 
 			#Right
 			1:
-				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*8)+(sizeX/2);
+				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*16)+(sizeX/2);
 				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.y = (sizeY*4)+(sizeY/2);		
 
 			#Up
 			2:
-				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*4)+(sizeX/2);
+				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*8)+(sizeX/2);
 				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.y = (sizeY*0)+(sizeY/2);	
 
 		#Down
 			3:
-				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*4)+(sizeX/2);
+				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.x = (sizeX*8)+(sizeX/2);
 				roomShifterNodes[i].get_node("roomShifter_hitbox").global_position.y = (sizeY*8)+(sizeY/2);		

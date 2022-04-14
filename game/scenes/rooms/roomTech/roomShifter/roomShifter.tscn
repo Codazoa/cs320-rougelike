@@ -6,7 +6,8 @@
 [node name="roomShifter" type="Node2D"]
 
 [node name="roomShifter_hitbox" type="StaticBody2D" parent="."]
-position = Vector2( 8, 8 )
+position = Vector2( 64, 64 )
+scale = Vector2( 8, 8 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
