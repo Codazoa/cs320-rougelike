@@ -1,14 +1,19 @@
 extends Node
 
-onready var Enemy = get_node("Enemy")
+var Enemy = preload("res://the_Slime.tscn")
+onready var slime = Enemy.instance()
 onready var Player = get_node("Player")
 
 signal enemyAgro
 
 func _ready():
 	Player.position = get_node("Player").get_node("Start").position
-	Enemy.position = get_node("Enemy").get_node("Start").position
+	
+	add_child(slime)
+	
+	slime.position = Vector2(700, 300)
+	Player.position = Vector2(300, 300)
+	
+	
 	
 
-func _on_Enemy_updatePosition():
-	$Enemy.update_position(Player.position)
