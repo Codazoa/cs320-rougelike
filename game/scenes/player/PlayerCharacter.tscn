@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Slug/pl_tail1_w.png" type="Texture" id=1]
 [ext_resource path="res://assets/Slug/pl_tail2_w.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/player/GunArm.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/player/MeleeAttachment.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Eye.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/player/DamBox.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -46,11 +47,6 @@ position = Vector2( 11, -5.2308 )
 scale = Vector2( 0.4, 0.4 )
 z_index = -9
 
-[node name="Eye2" parent="tail1" instance=ExtResource( 11 )]
-position = Vector2( 3.05176e-05, 4.76924 )
-scale = Vector2( 0.3, 0.32 )
-z_index = -9
-
 [node name="body" type="KinematicBody2D" parent="."]
 position = Vector2( 158, 122 )
 rotation = 1.5708
@@ -65,11 +61,6 @@ rotation = 1.5708
 scale = Vector2( 0.839758, 1 )
 texture = ExtResource( 8 )
 
-[node name="Eye" parent="body" instance=ExtResource( 11 )]
-position = Vector2( 13, 9.76918 )
-scale = Vector2( 0.4, 0.4 )
-z_index = -7
-
 [node name="PlayerPos" type="KinematicBody2D" parent="."]
 position = Vector2( 160, 162 )
 script = ExtResource( 5 )
@@ -77,11 +68,6 @@ script = ExtResource( 5 )
 [node name="Head" type="KinematicBody2D" parent="PlayerPos"]
 z_index = -1
 script = ExtResource( 4 )
-
-[node name="Eye2" parent="PlayerPos/Head" instance=ExtResource( 11 )]
-position = Vector2( -11.8, 10.6 )
-scale = Vector2( 0.3, 0.25 )
-z_index = 18
 
 [node name="Eye" parent="PlayerPos/Head" instance=ExtResource( 11 )]
 position = Vector2( 3, -11 )
@@ -116,3 +102,8 @@ shape = SubResource( 1 )
 scale = Vector2( 2.4, 2.4 )
 z_index = 15
 shape = SubResource( 1 )
+
+[node name="Node2D" parent="PlayerPos" instance=ExtResource( 12 )]
+scale = Vector2( 1.285, 1.39 )
+healthbar_height = 15
+healthbar_scale = 2
