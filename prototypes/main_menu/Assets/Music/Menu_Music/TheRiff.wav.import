@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/TheRiff.wav-6245cd095fdca240d0ef475f5986c48a.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/TheRiff.wav"
+dest_files=[ "res://.import/TheRiff.wav-6245cd095fdca240d0ef475f5986c48a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

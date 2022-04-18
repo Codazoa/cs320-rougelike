@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Settings.gd" type="Script" id=1]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title_name" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.1
+text = "Dr. Cliens Creature Crawler"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="video_button" type="Button" parent="title_name"]
+margin_left = 194.0
+margin_top = 80.0
+margin_right = 344.0
+margin_bottom = 120.0
+text = "Video"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="audio_button" type="Button" parent="title_name"]
+margin_left = 354.0
+margin_top = 80.0
+margin_right = 504.0
+margin_bottom = 120.0
+text = "Audio"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="control_button" type="Button" parent="title_name"]
+margin_left = 514.0
+margin_top = 80.0
+margin_right = 664.0
+margin_bottom = 120.0
+text = "Control"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="quit_button" type="Button" parent="title_name"]
+margin_left = 674.0
+margin_top = 80.0
+margin_right = 824.0
+margin_bottom = 120.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="title_name/video_button" to="." method="_on_video_button_pressed"]
+[connection signal="pressed" from="title_name/audio_button" to="." method="_on_audio_button_pressed"]
+[connection signal="pressed" from="title_name/control_button" to="." method="_on_control_button_pressed"]
+[connection signal="pressed" from="title_name/quit_button" to="." method="_on_quit_button_pressed"]

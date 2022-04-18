@@ -12,14 +12,14 @@ position = Vector2( 0, 80 )
 [node name="wall2" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 0, 112 )
 
+[node name="wall20" parent="wallBundle" instance=ExtResource( 1 )]
+position = Vector2( 128, 128 )
+
 [node name="wall3" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 16, 128 )
 
-[node name="wall" parent="wallBundle/wall3" instance=ExtResource( 1 )]
-position = Vector2( -16, 0 )
-
-[node name="wall2" parent="wallBundle/wall3" instance=ExtResource( 1 )]
-position = Vector2( 112, 0 )
+[node name="wall19" parent="wallBundle" instance=ExtResource( 1 )]
+position = Vector2( 0, 128 )
 
 [node name="Node2D8" parent="wallBundle" instance=ExtResource( 1 )]
 position = Vector2( 80, 0 )
