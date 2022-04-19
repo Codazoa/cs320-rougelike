@@ -351,10 +351,13 @@ DEBUG FUNCTION: detectClick is a basic function that checks for a left click inp
 was intended for me to test out mouse inputs, as well as practicing function formatting in godot.
 """
 func detectClick(event):
+	var useThisFunction = false;
+	if(useThisFunction):
 		if(event is InputEventMouseButton):
 			if((event.button_index == BUTTON_LEFT) and (event.pressed)):
 				return true;
 		return false;
+
 
 """
 DEBUG FUNCTION: _input spawns a the floor plan, starting at the cursor position (if the left mouse button is clicked)
