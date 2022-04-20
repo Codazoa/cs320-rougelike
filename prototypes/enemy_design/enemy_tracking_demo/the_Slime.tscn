@@ -7,22 +7,6 @@
 [ext_resource path="res://enemyAssets/slimeAssets/slime1_back.png" type="Texture" id=5]
 [ext_resource path="res://enemyAssets/slimeAssets/slime1_front.png" type="Texture" id=6]
 
-[sub_resource type="AtlasTexture" id=59]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=60]
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=61]
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=62]
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=55]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
@@ -37,6 +21,22 @@ region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=58]
 atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 2 )
 region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=63]
@@ -105,14 +105,14 @@ region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
-"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
-"loop": true,
-"name": "left",
-"speed": 8.0
-}, {
 "frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
 "loop": true,
 "name": "right",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
+"loop": true,
+"name": "left",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
@@ -152,6 +152,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -8 )
 frames = SubResource( 54 )
 animation = "left"
+frame = 1
 playing = true
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
