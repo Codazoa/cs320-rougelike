@@ -26,21 +26,26 @@ func handleCollision(collider):
 	var shiftTimerCheck = (worldManagerNode.roomLayoutNode.roomShiftTimer == -1);
 	#Check if at boundries
 	var boundryLegalCheck;
+	var legalRoomCheck;
 	match shifterType:
 		#Left
 		0:
 			boundryLegalCheck = worldManagerNode.roomLayoutNode.boundryLegalCheck(worldManagerNode.currentLocationX-1, worldManagerNode.currentLocationY);
+			legalRoomCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX-1, worldManagerNode.currentLocationY);
 		#Right
 		1:
 			boundryLegalCheck = worldManagerNode.roomLayoutNode.boundryLegalCheck(worldManagerNode.currentLocationX+1, worldManagerNode.currentLocationY);
+			legalRoomCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX+1, worldManagerNode.currentLocationY);
 		#Up
 		2:
 			boundryLegalCheck = worldManagerNode.roomLayoutNode.boundryLegalCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY-1);
+			legalRoomCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY-1);
 		#Down
 		3:
 			boundryLegalCheck = worldManagerNode.roomLayoutNode.boundryLegalCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY+1);
+			legalRoomCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY+1);
 
-	if(boundryLegalCheck && shiftTimerCheck): #Hypothetical case where I could check for if player is allowed to leave the room yet
+	if(boundryLegalCheck && legalRoomCheck && shiftTimerCheck): #Hypothetical case where I could check for if player is allowed to leave the room yet
 		shiftRoom(collider);
 
 """
