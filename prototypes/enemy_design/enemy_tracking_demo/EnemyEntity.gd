@@ -39,6 +39,8 @@ var canAttack = false
 
 var velocity = Vector2.ZERO 
 
+var angle = 0
+
 var maxBoundsX = 0
 var maxBoundsY = 0
 
