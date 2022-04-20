@@ -1,7 +1,7 @@
 extends Node
 
-var Enemy = preload("res://the_Slime.tscn")
-onready var slime = Enemy.instance()
+onready var Enemy = preload("res://Snake.tscn")
+onready var snake = Enemy.instance()
 onready var Player = get_node("Player")
 
 signal enemyAgro
@@ -9,9 +9,9 @@ signal enemyAgro
 func _ready():
 	Player.position = get_node("Player").get_node("Start").position
 	
-	add_child(slime)
+	add_child(snake)
 	
-	slime.position = Vector2(700, 300)
+	snake.position = Vector2(700, 300)
 	Player.position = Vector2(300, 300)
 	
 	

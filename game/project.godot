@@ -33,15 +33,16 @@ _global_script_class_icons={
 [application]
 
 config/name="Game"
-run/main_scene="res://scenes/world.tscn"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=320
-window/size/height=180
+window/size/width=2400
+window/size/height=1200
 window/size/test_width=1280
 window/size/test_height=720
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
