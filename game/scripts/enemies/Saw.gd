@@ -1,4 +1,4 @@
-extends "res://EnemyEntity.gd"
+extends "res://scripts/enemies/EnemyEntity.gd"
 
 var rng = RandomNumberGenerator.new()
 

@@ -1,6 +1,6 @@
-extends "res://EnemyEntity.gd"
+extends "res://scripts/enemies/EnemyEntity.gd"
 
-onready var myTimer = preload("res://the_Timer.tscn")
+onready var myTimer = preload("res://scenes/extra/the_Timer.tscn")
 
 func _ready():
 	
