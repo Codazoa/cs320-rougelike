@@ -88,3 +88,14 @@ left = true
 scale = Vector2( 2.4, 2.4 )
 z_index = 15
 shape = SubResource( 1 )
+
+scale = Vector2( 2.4, 2.4 )
+z_index = 15
+shape = SubResource( 1 )
+
+[node name="healthDisplay" parent="PlayerPos" instance=ExtResource( 12 )]
+visible = false
+scale = Vector2( 1.285, 1.39 )
+healthbar_height = 15
+healthbar_scale = 2
+>>>>>>> Stashed changes
