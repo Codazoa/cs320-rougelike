@@ -3,7 +3,6 @@
 [ext_resource path="res://assets/HealthBar/health_bar.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player_scripts/HealthDisplay.gd" type="Script" id=2]
 
-
 [node name="HealthDisplay" type="Node2D"]
 script = ExtResource( 2 )
 full_color = Color( 0, 0.717647, 0.0117647, 1 )

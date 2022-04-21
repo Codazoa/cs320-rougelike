@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/player/legIk.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player_scripts/legIk.gd" type="Script" id=1]
 [ext_resource path="res://assets/Slug/Legs/leg_seg_upper.png" type="Texture" id=2]
 [ext_resource path="res://assets/Slug/Legs/leg_seg_lower.png" type="Texture" id=3]
-[ext_resource path="res://scenes/player/leg.gd" type="Script" id=4]
+[ext_resource path="res://scripts/player_scripts/leg.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 4 )
@@ -26,16 +26,16 @@ texture = ExtResource( 3 )
 [node name="tip" type="Position2D" parent="base/knee"]
 position = Vector2( 20, 0 )
 
-[node name="target" type="KinematicBody2D" parent="base"]
+[node name="target" type="KinematicBody2D" parent="base" groups=["step_collider"]]
 position = Vector2( 32, 0 )
+collision_layer = 32769
+collision_mask = 32769
 
 [node name="restPos" type="Position2D" parent="."]
 position = Vector2( 32, 0 )
 
+[node name="stepTarget" type="Position2D" parent="."]
+position = Vector2( 21, 0 )
+
 [node name="forePos" type="Position2D" parent="."]
-position = Vector2( 29, 14 )
-
-[node name="backPos" type="Position2D" parent="."]
-position = Vector2( 26, -19 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 21, 36 )
