@@ -39,7 +39,7 @@ func blink():
 func _process(delta):
 	print(timer.get_time_left())
 	if is_blinking:
-		print("nlign")
+		
 		blink()
 		
 func _physics_process(delta):

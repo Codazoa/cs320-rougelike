@@ -29,6 +29,8 @@ var speed = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if slot.slot_num % 2 == 0:
+		left = true
 	if slot.slot_num in range(1,3): 
 		offset = true
 	step_target = forePos.global_position

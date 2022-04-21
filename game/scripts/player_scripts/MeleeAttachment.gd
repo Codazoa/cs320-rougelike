@@ -9,6 +9,8 @@ onready var rest_pos = $restPos
 onready var wind_pos = $windPos
 onready var target_pos = $targetPos
 
+onready var slot = Node
+
 onready var hitbox = $Hitbox
 onready var hitdetector = $Hitbox/HitDetector
 var hit_move = Vector2.ZERO
@@ -29,7 +31,14 @@ export var damage_mod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arm.recolor(color)
+	
+	slot = get_node("..")
 
+	if slot.left == true:
+		left = true
+	else:
+		left = false
+		
 	if !left:
 		active_button = BUTTON_RIGHT
 		arm.left = false
