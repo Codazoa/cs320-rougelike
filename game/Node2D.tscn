@@ -2,7 +2,6 @@
 
 [ext_resource path="res://scenes/player/PlayerCharacter.tscn" type="PackedScene" id=1]
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 2, 2 )
