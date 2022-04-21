@@ -5,9 +5,13 @@ onready var healthbar = self.get_node("HealthDisplay")
 
 export var is_player = false
 
+
 var target = true
 export var max_health = 100
 var health = max_health
+
+export var healthbar_height = 50 
+export var healthbar_scale = 1
 
 export var layer = 0
 
@@ -19,10 +23,15 @@ func take_damage(damage):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	healthbar.position.y = position.y - healthbar_height
+	healthbar.scale = Vector2(healthbar_scale, healthbar_scale)
 	if !is_player:
 		area.collision_layer = layer
 		area.collision_mask = layer
 	else:
+		var playerNode = get_node("../..")
+		health = playerNode.health
+		max_health = playerNode.health
 		area.collision_layer = 3
 		area.collision_mask = 3
 #signal when attacking body enters range

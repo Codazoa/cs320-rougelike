@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/player/ClawArm.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/player_scripts/MeleeAttachment.gd" type="Script" id=2]
 [ext_resource path="res://scripts/player_scripts/MeleeHitbox.gd" type="Script" id=3]
-[ext_resource path="res://assets/dummy.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -35,12 +34,6 @@ script = ExtResource( 3 )
 position = Vector2( -13, -1 )
 scale = Vector2( 1.2, 1 )
 shape = SubResource( 1 )
-
-[node name="Dummy" type="Sprite" parent="Hitbox/HitDetector"]
-visible = false
-position = Vector2( -0.833333, 0 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 4 )
 
 [node name="targetDetection" type="Area2D" parent="."]
 visible = false

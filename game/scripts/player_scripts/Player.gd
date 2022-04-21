@@ -13,11 +13,11 @@ var static_toggle = BUTTON_MIDDLE
 func _ready():
 	pass # Replace with function body.
 
-func take_damage(amount):
-	health -= amount
-	
-	if health < 0:
-		health = 0
+#func take_damage(amount):
+#	health -= amount
+#
+#	if health < 0:
+#		health = 0
 
 
 func go_static():
