@@ -8,10 +8,7 @@ const ROT_SPEED  = 1
 
 var velocity = Vector2.ZERO
 onready var playerChar = get_node("..")
-onready var spr_body = $body
-onready var spr_head = $head/head
-onready var spr_tail1 = $Tail1/tail1
-onready var spr_tail2 = $Tail1/Tail2/tail2
+
 
 onready var body =  get_node("../body")
 onready var tailBase = get_node("../tail1")

@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/Slug/pl_body_w.png" type="Texture" id=8]
 [ext_resource path="res://scenes/player/GunArm.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/player/MeleeAttachment.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Eye.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/player/Eye.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/player/DamBox.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/player/leg.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/player_scripts/BodySlot.gd" type="Script" id=14]
@@ -119,18 +119,14 @@ texture = ExtResource( 7 )
 
 [node name="rightArmSlot" type="Position2D" parent="PlayerPos/Head"]
 position = Vector2( -7, 21 )
-
 z_index = 4
-
 
 [node name="GunAttachment" parent="PlayerPos/Head/rightArmSlot" instance=ExtResource( 9 )]
 left = false
 
 [node name="leftArmSlot" type="Position2D" parent="PlayerPos/Head"]
 position = Vector2( -7, -22 )
-
 z_index = 4
-
 
 [node name="MeleeAttachment2" parent="PlayerPos/Head/leftArmSlot" instance=ExtResource( 10 )]
 left = true
@@ -140,13 +136,7 @@ scale = Vector2( 2.4, 2.4 )
 z_index = 15
 shape = SubResource( 1 )
 
-scale = Vector2( 2.4, 2.4 )
-z_index = 15
-shape = SubResource( 1 )
-
 [node name="healthDisplay" parent="PlayerPos" instance=ExtResource( 12 )]
-
 scale = Vector2( 1.285, 1.39 )
 healthbar_height = 15
 healthbar_scale = 2
-
