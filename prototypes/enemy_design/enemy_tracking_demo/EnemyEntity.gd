@@ -26,7 +26,6 @@ onready var myAggroShape = $AggroRange/AggroShape
 onready var myAttackRange = $AttackPoint/AttackRange
 onready var myVisionShape = $VisionRange/VisionShape
 
-
 # Booleans
 
 var isVisible = true
@@ -36,6 +35,8 @@ var canAttack = false
 
 
 # Calculating Variables
+
+onready var screen_size = get_viewport_rect().size
 
 var velocity = Vector2.ZERO 
 
@@ -64,7 +65,7 @@ func _ready():
 	directionX = 0
 	directionY = 0
 	visible = true
-
+	tracking = false
 	
 
 func _physics_process(_delta):

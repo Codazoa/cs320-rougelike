@@ -1,8 +1,8 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Saw.gd" type="Script" id=1]
-[ext_resource path="res://enemyAssets/sawAssets/Off.png" type="Texture" id=2]
-[ext_resource path="res://enemyAssets/sawAssets/On.png" type="Texture" id=3]
+[ext_resource path="res://Off.png" type="Texture" id=2]
+[ext_resource path="res://On.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -80,6 +80,7 @@ script = ExtResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
 animation = "on"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

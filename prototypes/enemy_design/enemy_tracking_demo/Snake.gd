@@ -1,17 +1,22 @@
 extends "res://EnemyEntity.gd"
 
-onready var myTimer = preload("res://the_Timer.tscn")
+onready var timer = preload("res://the_Timer.tscn")
+onready var myDelayAttack = timer.instance()
+onready var attackTime = timer.instance()
+
 
 func _ready():
-	
 	myVisionRange.monitoring = true
+	canAttack = false
+	tracking = false
+	currentTarget = null
+	targetPosition = null
+	
 	
 	mySprite.scale.x = 1.5
 	mySprite.scale.y = 1.5
-	
 	mySprite.play("idle_left")
-	
-	speed = 75
+	speed = 100
 
 func _physics_process(_delta):
 	if(canAttack == true):
@@ -97,6 +102,3 @@ func _on_AnimatedSprite_animation_finished():
 		if(canAttack == false):
 			targetPosition = currentTarget.position
 			tracking = true
-	
-	
-	

@@ -4,8 +4,8 @@ extends "res://scripts/enemies/EnemyEntity.gd"
 func _ready():
 	myVisionRange.monitoring = true
 	
-	mySprite.scale.x = 1.5
-	mySprite.scale.y = 1.5
+	mySprite.scale.x = 3.0
+	mySprite.scale.y = 3.0
 	mySprite.play("down")
 	
 	speed = 50

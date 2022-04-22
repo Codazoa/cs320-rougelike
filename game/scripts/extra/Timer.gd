@@ -1,4 +1,4 @@
-extends Timer
+ extends Timer
 
 onready var timerEnded = false
 
