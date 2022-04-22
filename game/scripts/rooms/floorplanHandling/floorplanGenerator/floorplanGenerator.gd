@@ -202,7 +202,7 @@ func placeRoom(givenX, givenY, currentDepth):
 
 	#Recurse on all cardinally adjacent rooms (in semi-random order)
 	var counter = rng.randi_range(0,3); #Pick a random starting direction
-	for i in range(0, 4):
+	for _i in range(0, 4):
 		counter +=1; #Get new direction
 		if(counter > 4): counter = 0; #Reset to 0 if a full directional rotation is made
 
