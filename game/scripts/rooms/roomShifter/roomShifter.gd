@@ -9,6 +9,9 @@ var worldManagerNode;
 
 export (PackedScene) var scene;
 
+var doorSprite = preload("res://assets/roomIcons/spr_relocator.png");
+var wallSprite = preload("res://assets/roomIcons/spr_userInterface_invIcon_0.png");
+
 func grabSpriteSize(desiredDimension):
 	var instanceSprite = self.get_node("SpriteTest");
 	if(desiredDimension):
@@ -20,7 +23,9 @@ func grabSpriteSize(desiredDimension):
 
 """
 handleCollision() is a function where any checks that might occur before shifting a room take place.
-For example, if the player is not allowed to leave the room yet, said check could be placed here.
+For example, if the player is not allowed to leave the room yet, said check could be placed here. Currently
+it checks if the player is attempting to go out of bounds, and or if the player is attempting to walk into a
+non-existant room.
 """
 func handleCollision(collider):
 	var shiftTimerCheck = (worldManagerNode.roomLayoutNode.roomShiftTimer == -1);
@@ -110,3 +115,24 @@ and passes it back.
 func pickRoom(roomType):
 	var roomDatabase = worldManagerNode.roomDatabaseNode;
 	return roomDatabase.pickRoom(roomType);
+
+func _process(delta):
+	var roomExistsCheck = false;
+	match shifterType:
+		#Left
+		0:
+			roomExistsCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX-1, worldManagerNode.currentLocationY);
+		#Right
+		1:
+			roomExistsCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX+1, worldManagerNode.currentLocationY);
+		#Up
+		2:
+			roomExistsCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY-1);
+		#Down
+		3:
+			roomExistsCheck = worldManagerNode.floorplanGeneratorNode.roomIsRoomCheck(worldManagerNode.currentLocationX, worldManagerNode.currentLocationY+1);
+
+	if(roomExistsCheck):
+		$SpriteTest.texture = doorSprite;
+	else:
+		$SpriteTest.texture = wallSprite;

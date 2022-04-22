@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/rooms/roomTech/entitySpawners/entitySpawner_slime.gd" type="Script" id=1]
+[ext_resource path="res://assets/roomIcons/spr_roomGen_slime.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2( 16, 16 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 4, 4 )
+texture = ExtResource( 2 )
