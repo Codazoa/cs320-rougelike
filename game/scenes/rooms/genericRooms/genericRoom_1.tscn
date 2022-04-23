@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://terrain/wall/wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enemies/the_Slime.tscn" type="PackedScene" id=2]
 
 [node name="roomBundles" type="Node2D"]
 
@@ -148,3 +149,15 @@ position = Vector2( 1920, 1024 )
 position = Vector2( 2048, 1024 )
 
 [node name="entityBundle" type="Node" parent="."]
+
+[node name="KinematicBody2D" parent="entityBundle" instance=ExtResource( 2 )]
+position = Vector2( 1856, 840 )
+
+[node name="KinematicBody2D2" parent="entityBundle" instance=ExtResource( 2 )]
+position = Vector2( 328, 840 )
+
+[node name="KinematicBody2D3" parent="entityBundle" instance=ExtResource( 2 )]
+position = Vector2( 320, 328 )
+
+[node name="KinematicBody2D4" parent="entityBundle" instance=ExtResource( 2 )]
+position = Vector2( 1848, 328 )

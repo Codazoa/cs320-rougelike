@@ -31,7 +31,7 @@ loadGenericRooms() loads all generic rooms located under a specific folder.
 """
 func loadGenericRooms():
 	print("Loading generic rooms");
-	var totalRooms = 1; #I don't like having a variable that dictates how many rooms to load but I don't know how to grab the count of files in the directory
+	var totalRooms = 2; #I don't like having a variable that dictates how many rooms to load but I don't know how to grab the count of files in the directory
 	for i in range(0, totalRooms):
 		genericRooms.append(load("res://scenes/rooms/genericRooms/genericRoom_"+str(i)+".tscn"));
 	print("Finishing loading generic rooms.");

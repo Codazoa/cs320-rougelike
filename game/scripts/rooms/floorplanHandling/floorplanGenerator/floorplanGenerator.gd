@@ -274,6 +274,13 @@ func generateFloorPlan(givenFloorPlanWidth, givenFloorPlanHeight, givenFloorPlan
 	floorPlan[deadendCoords[bossRoomCoordsIndex][0]][deadendCoords[bossRoomCoordsIndex][1]].setRoomID(3);
 	print("Boss Room: ("+str(deadendCoords[bossRoomCoordsIndex][0])+", "+str(deadendCoords[bossRoomCoordsIndex][1])+")");
 
+		#Place dot room
+	chosenIndex = rng.randi_range(0, deadendCoords.size()-1); #Choose random index from list of deadends
+	var dotRoomCoords = deadendCoords[chosenIndex]; #Records coordinates at index for later
+	deadendCoords.remove(chosenIndex); #Remove coordinates from list
+	floorPlan[dotRoomCoords[0]][dotRoomCoords[1]].setRoomID(4); #Place dotroom
+	print("Dot Room: ("+str(dotRoomCoords[0])+", "+str(dotRoomCoords[1])+")");
+
 """
 findFurthestDeadEnd() takes two parameters, the first is an integer array that denotes the coordinates of a room 
 on the current floorplan. The second parameter is a 2d integer array which denotes a list of coordinates that point 
