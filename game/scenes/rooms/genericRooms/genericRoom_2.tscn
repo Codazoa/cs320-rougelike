@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://terrain/wall/wall.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/roomIcons/spr_roomGen_bossroom.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemies/the_Saw.tscn" type="PackedScene" id=2]
 
 [node name="roomBundles" type="Node2D"]
 
@@ -148,7 +148,13 @@ position = Vector2( 1920, 1024 )
 [node name="wall11" parent="wallBundles/borderBundles/lowerRightBorder" instance=ExtResource( 1 )]
 position = Vector2( 2048, 1024 )
 
-[node name="SprRoomGenBossroom" type="Sprite" parent="."]
-position = Vector2( 1088, 576 )
-scale = Vector2( 16, 16 )
-texture = ExtResource( 2 )
+[node name="entityBundle" type="Node" parent="."]
+
+[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1080, 512 )
+
+[node name="KinematicBody2D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 456, 760 )
+
+[node name="KinematicBody2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1792, 784 )
