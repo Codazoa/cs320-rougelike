@@ -258,6 +258,7 @@ light_mask = 513
 position = Vector2( 0, -24 )
 frames = SubResource( 36 )
 animation = "idle_left"
+frame = 1
 playing = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]

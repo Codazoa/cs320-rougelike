@@ -51,10 +51,11 @@ func updateMovement():
 	
 	
 func _on_VisionRange_body_entered(body):
-	currentTarget = body
-	targetPosition = body.position
-	tracking = true
-	speed = 75
+	if (body.is_in_group("player")):
+		currentTarget = body
+		targetPosition = body.position
+		tracking = true
+		speed = 75
 	
 func _on_VisionRange_body_exited(body):
 	if(mySprite.get_animation() == "left_walk"):
@@ -77,20 +78,21 @@ func _on_AggroRange_body_entered(body):
 	canAttack = true
 	
 func _on_AggroRange_body_exited(body):
-	tracking = true
-	canAttack = false
-	mySprite.stop()
-	
-	directionX = currentTarget.position.x - position.x
-	
-	# Play the animation for the direction it needs to head most
-	# If the direction is right and is more than Y, animation X left
-	if directionX > 0:
-		mySprite.play("right_walk")
-			
-	# If the direction is left and is more than Y, animation X left
-	elif directionX < 0:
-		mySprite.play("left_walk")
+	if body.is_in_group("player"):
+		tracking = true
+		canAttack = false
+		mySprite.stop()
+		
+		directionX = currentTarget.position.x - position.x
+		
+		# Play the animation for the direction it needs to head most
+		# If the direction is right and is more than Y, animation X left
+		if directionX > 0:
+			mySprite.play("right_walk")
+				
+		# If the direction is left and is more than Y, animation X left
+		elif directionX < 0:
+			mySprite.play("left_walk")
 	
 func _on_AnimatedSprite_animation_finished():
 	if(mySprite.get_animation() == "left_attack" || mySprite.get_animation() == "right_attack"):

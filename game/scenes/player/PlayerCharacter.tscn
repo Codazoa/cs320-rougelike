@@ -95,7 +95,7 @@ slot_num = 3
 
 [node name="Node2D" parent="body/bSlot 3" instance=ExtResource( 13 )]
 
-[node name="PlayerPos" type="KinematicBody2D" parent="."]
+[node name="PlayerPos" type="KinematicBody2D" parent="." groups=["player"]]
 position = Vector2( 160, 162 )
 collision_layer = 256
 script = ExtResource( 5 )
@@ -138,6 +138,7 @@ z_index = 15
 shape = SubResource( 1 )
 
 [node name="healthDisplay" parent="PlayerPos" instance=ExtResource( 12 )]
+visible = false
 scale = Vector2( 1.285, 1.39 )
 healthbar_height = 15
 healthbar_scale = 2
