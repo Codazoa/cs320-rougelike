@@ -16,6 +16,8 @@ export var left = false
 onready var rest_pos = $restPos
 onready var knock_pos = $knockPos
 
+onready var slot = Node
+
 var world_scene = Node
 
 export (PackedScene) var slime_inst
@@ -46,7 +48,11 @@ func make_right():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	world_scene = get_parent().get_tree().get_root().get_node("World")	
-	
+	slot = get_node("..")
+	if slot.left == true:
+		left = true
+	else:
+		left = false
 	slime_view.visible = true
 	recolor(color)
 	
