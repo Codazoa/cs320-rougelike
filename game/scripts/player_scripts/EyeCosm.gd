@@ -37,7 +37,7 @@ func blink():
 	
 
 func _process(delta):
-	print(timer.get_time_left())
+#	print(timer.get_time_left())
 	if is_blinking:
 		
 		blink()

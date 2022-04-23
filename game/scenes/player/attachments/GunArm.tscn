@@ -31,7 +31,7 @@ scale = Vector2( 1.1, -1.1 )
 texture = ExtResource( 3 )
 
 [node name="BallSpawn" type="Position2D" parent="Cannon"]
-position = Vector2( 16, 0 )
+position = Vector2( 16.0001, -17 )
 
 [node name="GunProjectile" type="Sprite" parent="Cannon"]
 visible = false

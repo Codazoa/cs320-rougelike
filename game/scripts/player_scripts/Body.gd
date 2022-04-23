@@ -19,7 +19,7 @@ func recolor():
 func followSeg(curSeg: KinematicBody2D, target:KinematicBody2D, dist: int, delta):
 	curSeg.look_at(target.global_position)
 	if curSeg.global_position.distance_to(target.global_position) > dist:
-		curSeg.global_position = curSeg.global_position.move_toward(target.global_position, delta*200)
+		curSeg.global_position = curSeg.global_position.move_toward(target.global_position, delta*500)
 
 #update for 3 body segments
 func _physics_process(delta):

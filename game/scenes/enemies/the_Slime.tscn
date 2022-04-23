@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scripts/enemies/Slime.gd" type="Script" id=1]
 [ext_resource path="res://assets/EnemyAssets/Slime/slime1_left_side.png" type="Texture" id=2]
@@ -6,137 +6,114 @@
 [ext_resource path="res://assets/EnemyAssets/Slime/slime1_right_side.png" type="Texture" id=4]
 [ext_resource path="res://assets/EnemyAssets/Slime/slime1_back.png" type="Texture" id=5]
 [ext_resource path="res://assets/EnemyAssets/Slime/slime1_front.png" type="Texture" id=6]
-
-[sub_resource type="AtlasTexture" id=59]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=60]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=61]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=62]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 48, 0, 16, 16 )
+[ext_resource path="res://scenes/player/DamBox.tscn" type="PackedScene" id=7]
 
 [sub_resource type="AtlasTexture" id=55]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=56]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=57]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=58]
-flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 48, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=59]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=60]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=61]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=62]
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
 [sub_resource type="AtlasTexture" id=63]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=64]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=65]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=66]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=67]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=68]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 37, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=69]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 74, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=70]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 111, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=71]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 148, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=72]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 185, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=73]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 222, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=74]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 259, 0, 37, 41 )
 
 [sub_resource type="AtlasTexture" id=75]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=76]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 16, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=77]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=78]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 48, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=54]
 animations = [ {
-"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
-"loop": true,
-"name": "left",
-"speed": 8.0
-}, {
 "frames": [ SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
 "loop": true,
 "name": "right",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ) ],
+"loop": true,
+"name": "left",
 "speed": 8.0
 }, {
 "frames": [ SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
@@ -176,7 +153,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -8 )
 frames = SubResource( 54 )
 animation = "left"
-frame = 3
+frame = 1
 playing = true
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
@@ -206,6 +183,12 @@ collision_mask = 256
 
 [node name="AttackRange" type="CollisionShape2D" parent="AttackPoint"]
 shape = SubResource( 29 )
+
+[node name="Node2D" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0, -7 )
+scale = Vector2( 0.383, 0.427 )
+healthbar_scale = 2
+layer = 2
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="VisionRange" to="." method="_on_VisionRange_body_entered"]

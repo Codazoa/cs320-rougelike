@@ -45,7 +45,7 @@ func _on_Area2D_body_entered(body):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if health <= 0:
-		if !is_player:
-			get_parent().queue_free()
-		else:
-			get_tree().quit()
+#		if !is_player:
+		get_parent().queue_free()
+#		else:
+#			get_tree().quit()

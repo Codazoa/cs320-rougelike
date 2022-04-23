@@ -27,7 +27,7 @@ position = Vector2( 6, -26 )
 
 [node name="Hitbox" type="KinematicBody2D" parent="." groups=["PDamager"]]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="HitDetector" type="CollisionShape2D" parent="Hitbox" groups=["Damager"]]
