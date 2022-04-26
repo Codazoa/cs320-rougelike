@@ -1,7 +1,7 @@
 from tracemalloc import start
 from PIL import Image, ImageDraw
 import random
-
+# https://www.youtube.com/watch?v=BMq2Jrvp9AA Tutorial Code
 def random_color():
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
