@@ -1,0 +1,44 @@
+{
+	"items":[
+		{
+			"id": 1,
+			"image": "res://data/item1.png",
+			"shown": 0,
+			"score": 1,
+			"clicks": 0,
+			"time: 0
+		},
+		{
+			"id": 2,
+			"image": "res://data/item2.png",
+			"shown": 0,
+			"score": 1,
+			"clicks": 0,
+			"time: 0
+		},
+		{
+			"id": 3,
+			"image": "res://data/item3.png",
+			"shown": 0,
+			"score": 1,
+			"clicks": 0,
+			"time: 0
+		},
+		{
+			"id": 4,
+			"image": "res://data/item4.png",
+			"shown": 0,
+			"score": 1,
+			"clicks": 0,
+			"time: 0
+		},
+		{
+			"id": 5,
+			"image": "res://data/item5.png",
+			"shown": 0,
+			"score": 1,
+			"clicks": 0,
+			"time: 0
+		}
+	]
+}
