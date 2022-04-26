@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var playerPos = get_node("PlayerPos")
+onready var head = get_node("PlayerPos/Head")
 onready var body =  get_node("body")
 onready var tailBase = get_node("tail1")
 onready var tailTip = get_node("tail2")
@@ -28,6 +29,7 @@ func go_static():
 	tailBase.rotation = 1.52
 	tailTip.position = Vector2(playerPos.position.x, playerPos.position.y - 80)  
 	tailTip.rotation = 1.52
+	head.rotation = 1.52
 	
 func exit_static():
 	in_static = false
