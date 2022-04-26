@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BimBomBomp.wav-b1e33422a0b653a23e3025dd1ea86925.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/BimBomBomp.wav"
+dest_files=[ "res://.import/BimBomBomp.wav-b1e33422a0b653a23e3025dd1ea86925.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

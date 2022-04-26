@@ -1,0 +1,302 @@
+[gd_scene load_steps=51 format=2]
+
+[ext_resource path="res://Snake.gd" type="Script" id=1]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_walk_right.png" type="Texture" id=2]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_death_right.png" type="Texture" id=3]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_attack_left.png" type="Texture" id=4]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_idle.png" type="Texture" id=5]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_walk_left.png" type="Texture" id=6]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_attack_right.png" type="Texture" id=7]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_death_left.png" type="Texture" id=8]
+[ext_resource path="res://enemyAssets/snakeAssets/Snake_idle_right.png" type="Texture" id=9]
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=41]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=30]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=31]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=32]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=33]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=34]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=35]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=27]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=28]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="SpriteFrames" id=36]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "left_walk",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ) ],
+"loop": true,
+"name": "idle_right",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
+"loop": true,
+"name": "right_walk",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "left_attack",
+"speed": 9.0
+}, {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"loop": true,
+"name": "right_death",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "idle_left",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "left_death",
+"speed": 6.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
+"loop": true,
+"name": "right_attack",
+"speed": 9.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=37]
+radius = 9.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 212.229
+
+[sub_resource type="CapsuleShape2D" id=43]
+radius = 22.9999
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id=38]
+
+[node name="EnemyEntity" type="KinematicBody2D"]
+light_mask = 512
+collision_layer = 2
+collision_mask = 513
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 513
+position = Vector2( 0, -24 )
+frames = SubResource( 36 )
+animation = "idle_left"
+frame = 1
+playing = true
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
+light_mask = 513
+position = Vector2( 9, -7 )
+rotation = 1.5708
+shape = SubResource( 37 )
+
+[node name="VisionRange" type="Area2D" parent="."]
+visible = false
+light_mask = 513
+position = Vector2( 9, -7 )
+
+[node name="VisionShape" type="CollisionShape2D" parent="VisionRange"]
+light_mask = 513
+shape = SubResource( 2 )
+
+[node name="AggroRange" type="Area2D" parent="."]
+light_mask = 513
+position = Vector2( 0, -7 )
+
+[node name="AggroShape" type="CollisionShape2D" parent="AggroRange"]
+light_mask = 513
+rotation = 1.5708
+shape = SubResource( 43 )
+
+[node name="AttackPoint" type="Area2D" parent="."]
+visible = false
+light_mask = 513
+
+[node name="AttackRange" type="CollisionShape2D" parent="AttackPoint"]
+light_mask = 513
+position = Vector2( -2, -7 )
+rotation = 1.5708
+shape = SubResource( 38 )
+
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
+[connection signal="body_entered" from="VisionRange" to="." method="_on_VisionRange_body_entered"]
+[connection signal="body_exited" from="VisionRange" to="." method="_on_VisionRange_body_exited"]
+[connection signal="body_entered" from="AggroRange" to="." method="_on_AggroRange_body_entered"]
+[connection signal="body_exited" from="AggroRange" to="." method="_on_AggroRange_body_exited"]

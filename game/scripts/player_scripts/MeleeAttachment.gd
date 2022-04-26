@@ -1,5 +1,5 @@
 extends Node2D
-
+onready var playerChar = get_node("../../../..")
 onready var arm = $ClawArm
 
 export var color = Color(0.8, 0.3, 0.3)
@@ -8,6 +8,8 @@ export var left = false
 onready var rest_pos = $restPos
 onready var wind_pos = $windPos
 onready var target_pos = $targetPos
+
+onready var slot = Node
 
 onready var hitbox = $Hitbox
 onready var hitdetector = $Hitbox/HitDetector
@@ -29,7 +31,14 @@ export var damage_mod = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	arm.recolor(color)
+	
+	slot = get_node("..")
 
+	if slot.left == true:
+		left = true
+	else:
+		left = false
+		
 	if !left:
 		active_button = BUTTON_RIGHT
 		arm.left = false
@@ -74,27 +83,29 @@ func _on_targetDetection_body_entered(body):
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
-	if is_resting:
-		if arm.target.position != rest_pos.global_position:
-			arm.target.position = arm.target.position.move_toward(rest_pos.global_position, delta*200)
-	if is_winding:
-		if arm.target.position != wind_pos.global_position:
-			arm.target.position = arm.target.position.move_toward(wind_pos.global_position, delta*200)
+	if !playerChar.in_static:
+		if is_resting:
+			if arm.target.position != rest_pos.global_position:
+				arm.target.position = arm.target.position.move_toward(rest_pos.global_position, delta*200)
+		if is_winding:
+			if arm.target.position != wind_pos.global_position:
+				arm.target.position = arm.target.position.move_toward(wind_pos.global_position, delta*200)
 
-	if Input.is_mouse_button_pressed(active_button): 
-		is_resting = false
-		is_winding = true
-		is_attacking = true
+		if Input.is_mouse_button_pressed(active_button): 
+			is_resting = false
+			is_winding = true
+			is_attacking = true
+		else:
+			is_winding = false
+		
+		windup(delta)
+		
+		if !is_winding:
+			attack(delta)
+		#if Input.is_mouse_button_released(active_button):
 	else:
-		is_winding = false
-	
-	windup(delta)
-	
-	if !is_winding:
-		attack(delta)
-	#if Input.is_mouse_button_released(active_button):
-
+		if arm.target.position != rest_pos.global_position:
+				arm.target.position = arm.target.position.move_toward(rest_pos.global_position, delta*200)
 #checks if position is in given range
 func in_range(pos1, pos2, prox):
 	var x_thresh = pos2.position.x - pos1.position.x

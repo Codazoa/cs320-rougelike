@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FloatingintheAbyss.wav-f921d6642e710bb8ab674b60be913a50.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Menu_Music/FloatingintheAbyss.wav"
+dest_files=[ "res://.import/FloatingintheAbyss.wav-f921d6642e710bb8ab674b60be913a50.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

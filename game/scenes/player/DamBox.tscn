@@ -9,12 +9,19 @@
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
-collision_layer = 10
-collision_mask = 10
+collision_layer = 522
+collision_mask = 522
+priority = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 scale = Vector2( 2, 1.75 )
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="Area2D/CollisionShape2D"]
+visible = false
+position = Vector2( -9.53674e-07, 0.571428 )
+scale = Vector2( 0.464286, 0.567227 )
+z_index = 451
 
 [node name="HealthDisplay" parent="." instance=ExtResource( 3 )]
 z_index = 20

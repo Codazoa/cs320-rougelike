@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/peeper/peeper.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.05517
+
+[node name="Node2D" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( -2.38419e-07, 2.38419e-07 )
+scale = Vector2( 1.5, 1.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 1 )

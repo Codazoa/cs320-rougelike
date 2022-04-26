@@ -1,7 +1,10 @@
 extends Node2D
 const KNOCK_SPEED = 200
+onready var playerChar = get_node("../../../..")
+
 onready var cannon = $Cannon
 onready var arm = $base
+
 onready var slime_view = $Cannon/GunProjectile
 onready var slime_spawn = cannon.get_node("BallSpawn")
 
@@ -12,6 +15,8 @@ export var left = false
 
 onready var rest_pos = $restPos
 onready var knock_pos = $knockPos
+
+onready var slot = Node
 
 var world_scene = Node
 
@@ -43,7 +48,11 @@ func make_right():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	world_scene = get_parent().get_tree().get_root().get_node("World")	
-	
+	slot = get_node("..")
+	if slot.left == true:
+		left = true
+	else:
+		left = false
 	slime_view.visible = true
 	recolor(color)
 	
@@ -92,14 +101,15 @@ func reload():
 
 #cannon follows mouse, detect mouse input
 func _physics_process(delta):
-	arm.look_at(cannon.global_position)
-	cannon.look_at(get_global_mouse_position())
+	if !playerChar.in_static:
+		arm.look_at(cannon.global_position)
+		cannon.look_at(get_global_mouse_position())
 
-	if Input.is_mouse_button_pressed(active_button):
-		is_charging = true
-		is_resting = false		
-	else:
-		if is_charging:
-			fire(delta)
+		if Input.is_mouse_button_pressed(active_button):
+			is_charging = true
+			is_resting = false		
+		else:
+			if is_charging:
+				fire(delta)
 
 	

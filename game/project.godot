@@ -8,15 +8,46 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "generateFloor",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/floorplanGenerator/floorplanGenerator.gd"
+}, {
+"base": "Node",
+"class": "itemNode",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/itemNode/itemNode.gd"
+}, {
+"base": "Node",
+"class": "roomNode",
+"language": "GDScript",
+"path": "res://scripts/rooms/floorplanHandling/roomNode/roomNode.gd"
+} ]
 _global_script_class_icons={
+"generateFloor": "",
+"itemNode": "",
+"roomNode": ""
 }
 
 [application]
 
-config/name="Game"
-run/main_scene="res://scenes/world.tscn"
+config/name="DRCCC"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=2400
+window/size/height=1200
+window/size/test_width=1280
+window/size/test_height=720
+window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PoolStringArray(  )
 
 [input]
 
@@ -48,17 +79,6 @@ ui_down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[display]
-
-window/size/width=320
-window/size/height=180
-window/size/test_width=1280
-window/size/test_height=720
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/gut/plugin.cfg" )
 
 [rendering]
 
