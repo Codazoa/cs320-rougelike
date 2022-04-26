@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.6.6;
+// https://www.youtube.com/watch?v=ZH_7nEIJDUY Tutorial video
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
