@@ -1,0 +1,263 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/player_editor/EditorGUI.gd" type="Script" id=1]
+[ext_resource path="res://scripts/player_editor/PartsDisplay.gd" type="Script" id=2]
+
+[node name="EditorGUI" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ScreenDivide1" type="PanelContainer" parent="."]
+size_flags_horizontal = 7
+size_flags_vertical = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="ScreenDivide1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 147.0
+script = ExtResource( 2 )
+
+[node name="Cosmetic" type="VBoxContainer" parent="ScreenDivide1/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Attachments" type="Label" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_right = 82.0
+margin_bottom = 14.0
+text = "Attachments"
+
+[node name="PanelContainer" type="PanelContainer" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_top = 18.0
+margin_right = 82.0
+margin_bottom = 32.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 75.0
+margin_bottom = 7.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer/ScrollContainer"]
+
+[node name="Color" type="Label" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_top = 36.0
+margin_right = 82.0
+margin_bottom = 50.0
+text = "Color"
+
+[node name="PanelContainer2" type="PanelContainer" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_top = 54.0
+margin_right = 82.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 75.0
+margin_bottom = 7.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer2/ScrollContainer"]
+
+[node name="Pattern" type="Label" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_top = 72.0
+margin_right = 82.0
+margin_bottom = 86.0
+text = "Pattern"
+
+[node name="PanelContainer3" type="PanelContainer" parent="ScreenDivide1/TabContainer/Cosmetic"]
+margin_top = 90.0
+margin_right = 82.0
+margin_bottom = 104.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 75.0
+margin_bottom = 7.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Cosmetic/PanelContainer3/ScrollContainer"]
+
+[node name="Functional" type="VBoxContainer" parent="ScreenDivide1/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Attachments" type="Label" parent="ScreenDivide1/TabContainer/Functional"]
+margin_right = 82.0
+margin_bottom = 14.0
+text = "Attachments"
+
+[node name="PanelContainer" type="PanelContainer" parent="ScreenDivide1/TabContainer/Functional"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 14.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer/ScrollContainer"]
+
+[node name="Body" type="Label" parent="ScreenDivide1/TabContainer/Functional"]
+margin_top = 18.0
+margin_right = 82.0
+margin_bottom = 32.0
+text = "Body"
+
+[node name="PanelContainer2" type="PanelContainer" parent="ScreenDivide1/TabContainer/Functional"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 14.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer2"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer2/ScrollContainer"]
+
+[node name="Limb" type="Label" parent="ScreenDivide1/TabContainer/Functional"]
+margin_top = 36.0
+margin_right = 82.0
+margin_bottom = 50.0
+text = "Limb"
+
+[node name="PanelContainer3" type="PanelContainer" parent="ScreenDivide1/TabContainer/Functional"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 14.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer3"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="ScreenDivide1/TabContainer/Functional/PanelContainer3/ScrollContainer"]
+
+[node name="ScreenDivide2" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="ScreenDivide2"]
+margin_right = 12.0
+margin_bottom = 40.0
+
+[node name="NameEdit" type="LineEdit" parent="ScreenDivide2"]
+margin_left = 16.0
+margin_right = 74.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+align = 1
+max_length = 30
+placeholder_text = "Enter a name"
+
+[node name="AcceptButton" type="Button" parent="ScreenDivide2"]
+margin_left = 78.0
+margin_right = 90.0
+margin_bottom = 40.0
+size_flags_vertical = 5
+
+[node name="ScreenDivide3" type="PanelContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenDivide3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 108.0
+margin_bottom = 79.0
+
+[node name="Label" type="Label" parent="ScreenDivide3/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 14.0
+text = "Player Statistics"
+
+[node name="Damage" type="HBoxContainer" parent="ScreenDivide3/VBoxContainer"]
+margin_top = 18.0
+margin_right = 101.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="ScreenDivide3/VBoxContainer/Damage"]
+margin_right = 60.0
+margin_bottom = 14.0
+text = "Damage: "
+
+[node name="Value" type="Label" parent="ScreenDivide3/VBoxContainer/Damage"]
+margin_left = 64.0
+margin_right = 64.0
+margin_bottom = 14.0
+
+[node name="HealthPoints" type="HBoxContainer" parent="ScreenDivide3/VBoxContainer"]
+margin_top = 36.0
+margin_right = 101.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="ScreenDivide3/VBoxContainer/HealthPoints"]
+margin_right = 94.0
+margin_bottom = 14.0
+text = "Health Points: "
+
+[node name="Value" type="Label" parent="ScreenDivide3/VBoxContainer/HealthPoints"]
+margin_left = 98.0
+margin_right = 98.0
+margin_bottom = 14.0
+
+[node name="Speed" type="HBoxContainer" parent="ScreenDivide3/VBoxContainer"]
+margin_top = 54.0
+margin_right = 101.0
+margin_bottom = 68.0
+
+[node name="Label" type="Label" parent="ScreenDivide3/VBoxContainer/Speed"]
+margin_right = 43.0
+margin_bottom = 14.0
+text = "Speed:"
+
+[node name="Value" type="Label" parent="ScreenDivide3/VBoxContainer/Speed"]
+margin_left = 47.0
+margin_right = 47.0
+margin_bottom = 14.0
+
+[node name="SpecialAttributes" type="RichTextLabel" parent="ScreenDivide3/VBoxContainer"]
+margin_top = 72.0
+margin_right = 101.0
+margin_bottom = 72.0
+text = "Special Attributes:"
