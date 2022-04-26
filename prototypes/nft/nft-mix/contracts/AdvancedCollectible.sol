@@ -1,4 +1,5 @@
 pragma solidity 0.6.6;
+// https://www.youtube.com/watch?v=p36tXHX1JD8 Tutorial code
 
 import "@openzeppelin/contracts/token/ERC721.sol";
 import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
