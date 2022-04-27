@@ -12,6 +12,10 @@ export (PackedScene) var scene;
 var doorSprite = preload("res://assets/roomIcons/spr_relocator.png");
 var wallSprite = preload("res://assets/roomIcons/spr_userInterface_invIcon_0.png");
 
+"""
+grabSpriteSize returns the size of the roomShifter's sprite. A parameter is taken which determines if the
+width (true) or height (false) is returned.
+"""
 func grabSpriteSize(desiredDimension):
 	var instanceSprite = self.get_node("SpriteTest");
 	if(desiredDimension):
@@ -55,8 +59,9 @@ func handleCollision(collider):
 
 """
 shiftRoom() takes one argument, that being the node that collided with the roomShifter.
-shiftRoom() serves mainly as a method of testing coordinate manipulation. Each version of the roomShifter
-has varying effects on objects in the room.
+shiftRoom() handles initializing the roomShift event when a player collides with it. 
+It is first determined what room is being shifted to (north, east, south, west,) and then whether or not
+the attempted roomShift is legal (if the room is in bounds, if the room exists, if a roomShift has not recently ocurred)
 """
 func shiftRoom(collider):
 	
@@ -116,6 +121,11 @@ func pickRoom(roomType):
 	var roomDatabase = worldManagerNode.roomDatabaseNode;
 	return roomDatabase.pickRoom(roomType);
 
+"""
+This function manages the current sprite of the roomShifter.
+If the roomShifter leads to a existant room, the sprite is changed to reflect so.
+Otherwise, the roomShifter sprite is changed to resemble an ordinary wall.
+"""
 func _process(delta):
 	var roomExistsCheck = false;
 	match shifterType:
