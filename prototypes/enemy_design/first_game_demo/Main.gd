@@ -1,5 +1,18 @@
 extends Node
 
+#########################################################################################################
+#													#
+#	The following was written by Dylan Strong							#
+#													#
+#########################################################################################################
+
+"""
+	Goal: The goal of the main.gd demo script was to create a first attempt at Godot game, directly
+	referencing a tutorial used on their documentation website. The base functionality was having operations
+	for a new game, a game over, some basic timers as well as creaing the new game on start up
+
+"""
+
 export (PackedScene) var Mob
 var score
 
