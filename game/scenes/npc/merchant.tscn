@@ -15,8 +15,14 @@ texture = ExtResource( 1 )
 [node name="left" type="Node2D" parent="."]
 position = Vector2( -61, 289 )
 
+[node name="leftSprite" type="Sprite" parent="left"]
+position = Vector2( 1.19922, -0.674561 )
+
 [node name="right" type="Node2D" parent="."]
 position = Vector2( 230, 294 )
+
+[node name="rightSprite" type="Sprite" parent="right"]
+position = Vector2( -2.00439, 0.393311 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -24,5 +30,27 @@ position = Vector2( 230, 294 )
 wait_time = 20.427
 autostart = true
 
+[node name="leftButton" type="Button" parent="."]
+margin_left = -103.683
+margin_top = 377.561
+margin_right = -13.6834
+margin_bottom = 407.561
+text = "Left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rightButton" type="Button" parent="."]
+margin_left = 183.663
+margin_top = 383.157
+margin_right = 273.663
+margin_bottom = 413.157
+text = "Right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="leftButton" to="." method="_on_leftButton_pressed"]
+[connection signal="pressed" from="rightButton" to="." method="_on_rightButton_pressed"]

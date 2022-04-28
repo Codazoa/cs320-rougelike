@@ -14,29 +14,25 @@ onready var item3 = preload("res://data/Item3.tscn")
 onready var item4 = preload("res://data/Item4.tscn")
 onready var item5 = preload("res://data/Item5.tscn")
 
-onready var itemList = [item1, item2, item3, item4, item5]
+var factory = ItemFactory.new()
 
-onready var leftSpawn = $left
-onready var rightSpawn = $right
+onready var itemList = [factory.create(), factory.create(), 
+	factory.create(), factory.create(), factory.create()]
+
+onready var leftSpawn = $left/leftSprite
+onready var rightSpawn = $right/rightSprite
+
+var left
+var right
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for item in itemList:
-		item.instance().time = OS.get_unix_time()
 	$HTTPRequest.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequest.request("http://game.api.hippyhouse.net:22800/api/dotrgb")
 	update_color()
 	var newScores = getUcb1Scores()
-	spawn_items(itemList[newScores[0].id], itemList[newScores[1].id])
+	spawn_items(newScores[0], newScores[1])
 	pass
-	
-func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT:
-		updateUCB1Score()
-		leftSpawn.get_child(0).queue_free()
-		rightSpawn.get_child(0).queue_free()
-		var newScores = getUcb1Scores()
-		spawn_items(itemList[newScores[0].id], itemList[newScores[1].id])
 
 func _on_Timer_timeout():
 	$HTTPRequest.request("http://game.api.hippyhouse.net:22800/api/dotrgb")
@@ -49,45 +45,106 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	color_data = json.result
 	update_color()
 	
-func spawn_items(leftItem, rightItem): # spawn in left and right spots
-	print("spawning")
-	var left = leftItem.instance()
-	var right = rightItem.instance()
-	print(left.name, right.name)
-	leftSpawn.add_child(left)
-	rightSpawn.add_child(right)
+func spawn_items(leftItem, rightItem):
+	""" Spawns the given items in the left and right spawning spaces
+		takes two items
+		returns nothing"""
+	left = leftItem
+	right = rightItem
+	left.time = OS.get_unix_time()
+	right.time = OS.get_unix_time()
+	print("Spawning IDs: %d and %d" % [left.id, right.id])
+	leftSpawn.texture = load(left.spriteLoc)
+	rightSpawn.texture = load(right.spriteLoc)
 
 # itemscoring code below
 func ucb1(item):
+	""" Calculates the UCB1 score of the given item
+		takes an item object
+		returns the UCB1 score """
 	var alpha = 0.5
 	var clicks = item.clicks
 	var shown = item.shown
 	var time = OS.get_unix_time() - item.time 
 	
-	print("clicks: " + str(clicks))
-	print("shown: " + str(shown))
-	print("time: " + str(time))
+	print("ItemID: %d\tClicks: %d\tShown: %d\tTime: %d" % [item.id , clicks , shown , time])
 	return (((clicks)/(shown))+(alpha * ((2 * log(time))/(shown))))
 	
 func getUcb1Scores():
-	scores.sort_custom(MyCustomSorter, "sort_scores")
-	print(scores)
-	return [scores[0], scores[1]]
+	""" Retrieves the first two items from the item list
+		takes no arguments
+		returns the first two item in the sorted list"""
+	itemList.sort_custom(MyCustomSorter, "sort_scores")
+	for item in itemList:
+		print(str(item.id) + " SCORE: " + str(item.score))
+	return [itemList[0], itemList[1]]
 	
 func updateUCB1Score():
+	"""Updates the UCB1 scores of all items to spawn
+	   takes no argumens
+	   returns nothing """
 	for item in itemList:
-		item = item.instance()
-		var itName = item.name
+		var itemID = item.id
 		var newScore = ucb1(item)
-		for score in scores:
-			if score.name == itName:
-				score.score = newScore
+		item.score = newScore
+		
 
 class MyCustomSorter:
+	""" This class is for sorting the list of items by their UBC1 score"""
 	static func sort_scores(a, b):
 		if a.score > b.score:
 			return true
 		return false
-
 		
+
+class MerchantItem:
+	""" Class to store item information 
+		Used by the factory class to create proper IDs""" 
+	var clicks = 0
+	var shown = 1
+	var score = 0
+	var time = OS.get_unix_time()
+	var id
+	var spriteLoc = "res://data/item%d.png" % id
+	var sceneLoc = "res://data/Item%d.tscn" % id
+	var scene = load(sceneLoc)
 	
+	func _init(id):
+		self.id = id
+	
+class ItemFactory:
+	""" Factory to create items with proper formating"""
+	var numCreated = 0
+	
+	func create():
+		self.numCreated = self.numCreated + 1
+		return MerchantItem.new(self.numCreated)
+	
+	
+func _on_leftButton_pressed():
+	""" Checks for button input events
+		updates the UCB1 scores, destroys the spawned items, gets new items to spawn """
+	left.clicks += 1
+	
+	left.shown += 1
+	right.shown += 1
+	
+	updateUCB1Score()
+	leftSpawn.texture = null
+	rightSpawn.texture = null
+	var newScores = getUcb1Scores()
+	spawn_items(newScores[0], newScores[1])
+
+func _on_rightButton_pressed():
+	""" Checks for button input events
+		updates the UCB1 scores, destroys the spawned items, gets new items to spawn """
+	right.clicks += 1
+	
+	left.shown += 1
+	right.shown += 1
+	
+	updateUCB1Score()
+	leftSpawn.texture = null
+	rightSpawn.texture = null
+	var newScores = getUcb1Scores()
+	spawn_items(newScores[0], newScores[1])

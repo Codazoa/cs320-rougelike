@@ -8,6 +8,8 @@ import config # importing config.py for api key
 
 
 class DotScraper():
+    """ This class will scrape the global consciousness dot website and return
+        the rgb values of the center of the dot"""
     def __init__(self, update):
         self.updateFreq = update # how often in minutes we should update data
         self.dotURL = 'https://global-mind.org/gcpdot/gcp.html' # url to the global dot
@@ -16,10 +18,13 @@ class DotScraper():
         self.curDotRGB = () # save the tuple of the current dot rgb values so that we don't have to download again
         self.updateDot()
 
-    def checkUpdateInterval(self): # returns true if beyond update frequency, false if within frequency
+    def checkUpdateInterval(self):
+        """ Checks if the current update call is happening after the proper amount of times
+            returns true if beyond update frequency, false if within frequency"""
         return ((time.time() - self.lastUpdate) > (60*self.updateFreq))
 
-    def updateDot(self): # download the new image of the dot, store as ../data/dot.png
+    def updateDot(self):
+        """ Download the new image of the dot, store as ../data/dot.png"""
         if self.checkUpdateInterval():
             fireFoxOptions = webdriver.FirefoxOptions() # set up driver options
             fireFoxOptions.headless = True # set the driver to use a headless client
@@ -33,7 +38,8 @@ class DotScraper():
             self.lastAccess = time.time() # update the access time
             self.updateCurDotRGB() # update the dot so we could return it
 
-    def updateCurDotRGB(self): # return the rgb value of the center of the dot.png file in ../data/
+    def updateCurDotRGB(self):
+        """ Caches the rgb value so each call to the api doesn't require a scrape"""
         dot = Image.open(self.dotPNGPath) # open the image
         size = dot.size # find image size
         pixAccess = dot.load() # load the pixel Access object
@@ -41,6 +47,7 @@ class DotScraper():
 
 
 class CityWeatherScraper():
+    """ Class to scrape weather data for all capital cities"""
     def __init__(self, update):
         self.updateFreq = update # set the update frequency in minutes (api can only be called 60 times in 60 minutes)
         self.cityWeather = dict() # dict of weather data for each city {'city': {'main': {}}, {'wind': {}}}
@@ -94,7 +101,9 @@ class CityWeatherScraper():
     def checkUpdateInterval(self): # returns true if beyond update frequency, false if within frequency
         return ((time.time() - self.lastUpdate) > (60*self.updateFreq))
 
-    def updateCityWeather(self): # update the city weather with <updateFreq> new entries (this should only happen every <updateFreq> min)
+    def updateCityWeather(self):
+        """ Update the city weather with <updateFreq> new entries
+            this should only happen every <updateFreq> min"""
         self.cityWeather.clear() # clear the weather information
         self.tempCityList.clear() # clear the city list information
         if(self.checkUpdateInterval()): # only update if we are past the update frequency
@@ -104,14 +113,23 @@ class CityWeatherScraper():
                 self.tempCityList.append(city)
                 self.lastUpdate = time.time() # update access time
 
-    def __getRandCity(self, cityList): # return a random city from the cityList
+    def __getRandCity(self, cityList):
+        """ Returns a random city from the cityList
+            takes a list of city names
+            returns a random city from the list"""
         random.seed(time.time()) # reset random seed
         return random.choice(cityList) # return a random city name
 
-    def __createApiUrl(self, city): # returns the usable api url
+    def __createApiUrl(self, city):
+        """ Returns the usable api url for the given city
+            takes a city name as a string
+            returns a fully formed api string to call openweathermap"""
         return f'https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={self.api}'
 
-    def retrieveWeatherData(self, city): # retrieves weather data for a particular city
+    def retrieveWeatherData(self, city):
+        """ Retrieves weather data for a particular city
+            takes a city name
+            returns a dictionary with the weather data for the city"""
         assert city in self.cityNames # be sure that city exists in the list
         rawData = request("GET", self.__createApiUrl(city)) # get the raw json from the api
         jsonData = json.loads(rawData.text) # so we can parse the json returned
@@ -124,10 +142,12 @@ class CityWeatherScraper():
 
         return dataDict
 
-    def getRandMainWeather(self): # get the main weather data of a random city
+    def getRandMainWeather(self):
+        """ Get the main weather data of a random city """
         city = self.__getRandCity(self.tempCityList)
         return {city: self.cityWeather.get(city).get('main')}
 
-    def getRandWindWeather(self): # get the wind (m/s) of a random city
+    def getRandWindWeather(self):
+        """ Get the wind weather of a random city"""
         city = self.__getRandCity(self.tempCityList)
         return {city: self.cityWeather.get(city).get('wind')}
