@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
+"""
+	Enemy Entity
 
-######################################################################
-#	Enemy Entity
-#
-#	The goal of this script is to create a default enemy character,
-#	creating its base animations, stats, and other mechanics that
-#	can be changed or modified later. Its the base object
-#
+	The goal of this script is to create a default enemy character,
+	creating its base animations, stats, and other mechanics that
+	can be changed or modified later. Its the base object
+"""
+
 ######################################################################
 #
 #	The Following written by Dylan Strong
