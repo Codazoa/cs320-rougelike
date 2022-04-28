@@ -1,8 +1,14 @@
 extends Node
 
-# !! part_pickup needs to be connected from CollectiblePart to _on_part_pickup
-#	upon enemy death
-# !! Make singleton
+
+"""
+	Holds parts picked up by player for utilization in editor.
+	
+	@desc:
+		This script uses a set of arrays for categorizing parts collected by
+		player. It is a singleton to allow for easy access by different scenes.
+"""
+
 
 signal inventory_changed
 
@@ -21,7 +27,9 @@ var limb_inventory = []
 func _ready():
 	pass
 	
-	
+"""
+	Matches parts picked up to correct type and stores in specific array
+"""
 func _on_part_pickup(player_part):
 	var specific_inventory
 	

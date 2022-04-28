@@ -1,6 +1,12 @@
 extends TabContainer
 
 
+"""
+	Displays collected parts from inventory into the categorized grids on the
+	left panel of the EditorGUI
+"""
+
+
 var part_slot = preload("res://scenes/player_editor/PartSlot.tscn")
 
 

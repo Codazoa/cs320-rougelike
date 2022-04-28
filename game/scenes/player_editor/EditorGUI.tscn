@@ -261,3 +261,7 @@ margin_top = 72.0
 margin_right = 101.0
 margin_bottom = 72.0
 text = "Special Attributes:"
+
+[connection signal="pressed" from="ScreenDivide2/CancelButton" to="." method="_on_edits_canceled"]
+[connection signal="text_changed" from="ScreenDivide2/NameEdit" to="." method="_on_name_changed"]
+[connection signal="pressed" from="ScreenDivide2/AcceptButton" to="." method="_on_edits_accepted"]

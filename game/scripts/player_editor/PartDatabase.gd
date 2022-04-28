@@ -1,9 +1,17 @@
 extends Node
 
-# !! Fix PartsLibrary path
-# !! Make dict now hold tuple with resource in slot 1, and path to part scene
-#	 for instancing. 
-# !! Make singleton
+
+"""
+	Holds quick reference to all possible parts that can be used for the player
+	
+	@desc:
+		This script utilizes a basic dictionary for constant time lookup of parts
+		when instancing into scenes (by holding both the part resource and a
+		path to its scene in the value of the dict). It updates this part 
+		collection upon runtime of game by iterating through the folders 
+		containing the resources and scenes. Is a singleton.
+"""
+
 
 # Dict to hold all creature parts
 var parts = {}

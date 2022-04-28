@@ -1,5 +1,16 @@
 extends Area2D
 
+
+"""
+	A part object that can be dropped by enemies upon death.
+	
+	@desc:
+		This scene instances a collision object that is dropped by enemies
+		and can add the part it represents to the player's inventory
+		upon collision with the player.
+"""
+
+
 # !! Adjust scale as necessary in ready
 # !! Make sure when spawning this that you set player_part before instancing
 # !! Add path to player in _on_body_entered

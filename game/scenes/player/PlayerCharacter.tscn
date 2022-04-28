@@ -224,3 +224,6 @@ visible = false
 scale = Vector2( 1.285, 1.39 )
 healthbar_height = 15
 healthbar_scale = 2
+
+[node name="Cosmetics" type="Position2D" parent="."]
+position = Vector2( 160, 162 )

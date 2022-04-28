@@ -1,6 +1,17 @@
 extends Camera2D
 
 
+"""
+	Camera that acts as the base for the Editor GUI
+	
+	@desc:
+		This scene is always present in the scene tree/can be switched to at
+		any time by key press. Upon opening, it pauses the rest of the game
+		and instances the EditorGUI around the player. It acts as the "main"
+		node for the editor processes/connections to the rest of the game.
+"""
+
+
 var viewport_size
 var player
 var player_position
@@ -13,9 +24,11 @@ signal cancel_editor
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Allows for processing despite the game being paused
 	pause_mode = Node.PAUSE_MODE_PROCESS
 	set_process_input(true)
 	
+	# Set static position at game runtime
 	viewport_size = get_viewport_rect().size
 	offset.x = viewport_size.x / 2
 	offset.y = viewport_size.y * 2
@@ -30,6 +43,10 @@ func _ready():
 #func _process(delta):
 #	pass
 
+
+"""
+	Take in key press input and instance the editor or remove it
+"""
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_I:
@@ -57,6 +74,10 @@ func _unhandled_input(event):
 				add_child(cursor_instance)
 
 
+
+"""
+	Upon quitting the editor, clean up (remove GUI, position player back, unpause)
+"""
 func _on_quit_editor():
 	editor_open = false
 	emit_signal("cancel_editor") # have editor erase its dictionary/tween off screen
