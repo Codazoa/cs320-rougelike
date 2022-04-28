@@ -1,3 +1,4 @@
+#All of the following code was written by Sydney Burgess
 extends Node
 
 var rng = RandomNumberGenerator.new()
@@ -10,7 +11,9 @@ var dotRooms = [];
 
 var worldManagerNode;
 
-# Called when the node enters the scene tree for the first time.
+"""
+Called when the node enters the scene tree for the first time, serves as a system for debugging.
+"""
 func _ready():
 	print("Node created: roomDatabase");
 	generateDatabase();

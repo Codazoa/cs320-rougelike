@@ -375,6 +375,8 @@ func _input(event):
 		populateFloorPlan();
 		#buildFloorPlan(event);
 
-
+"""
+DEBUG FUNCTION: used to track when this nod is spawned
+"""
 func _ready():
 		print("Node created: floorplanGenerator");
